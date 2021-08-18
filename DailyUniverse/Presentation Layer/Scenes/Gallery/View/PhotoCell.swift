@@ -1,0 +1,57 @@
+//
+//  PhotoCell.swift
+//  DailyUniverse
+//
+//  Created by Takayuki Yamaguchi on 2021-08-17.
+//
+
+import UIKit
+
+class PhotoCell: UICollectionViewCell {
+  static let identifier = "photoCell"
+  
+  // MARK: - Initialization
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    setupUI()
+  }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  // MARK: - Properties
+  lazy var imageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.contentMode = .scaleAspectFit
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
+  }()
+  
+  lazy var activityIndicator: UIActivityIndicatorView = {
+    let indicator = UIActivityIndicatorView()
+    indicator.hidesWhenStopped = true
+    indicator.center = self.contentView.center
+    return indicator
+  }()
+  
+  lazy var titleLabel: UILabel = {
+    let uiLabel = UILabel()
+    uiLabel.translatesAutoresizingMaskIntoConstraints = false
+    return uiLabel
+  }()
+  
+  
+}
+
+// MARK: - UI Setup
+extension PhotoCell {
+  private func setupUI() {
+    self.contentView.addSubview(imageView)
+    self.contentView.addSubview(activityIndicator)
+    self.addSubview(titleLabel)
+    self.contentView.backgroundColor = .systemGreen
+    
+    titleLabel.matchParent()
+    imageView.matchParent()
+  }
+}

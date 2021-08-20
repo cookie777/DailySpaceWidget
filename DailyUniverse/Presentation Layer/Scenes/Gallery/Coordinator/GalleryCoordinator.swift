@@ -16,7 +16,10 @@ class GalleryCoordinator: Coordinator {
   
   func start() {
     let galleryViewController = GalleryViewController()
-    galleryViewController.viewModel = GalleryViewModel()
+    
+    galleryViewController.viewModel = GalleryViewModel(
+      photoMetaDataService: PhotosMetaDataServiceImplementation()
+    )
     navigationController.pushViewController(galleryViewController, animated: true)
   }
   

@@ -8,9 +8,9 @@
 import Foundation
 
 struct Photo: Hashable {
-  let copyright: String? = nil
-  let date: String? = nil
-  let explanation: String? = nil
-  let imageUrl: String? = nil
+  let copyright: String?
+  let date: String?
+  let explanation: String?
+  let imageUrl: String?
   let title: String?
 }

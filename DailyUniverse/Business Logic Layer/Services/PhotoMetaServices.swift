@@ -10,17 +10,17 @@ import RxSwift
 
 protocol PhotoMetaDataService: AnyObject {
   /// Returns by default past 10 photos metadata
-  func getPhotos(days: Int) -> Observable<([NASAPhotoMeta]?, Error?)>
+  func getPhotoMetaDatas(days: Int) -> Observable<([NASAPhotoMeta]?, Error?)>
   
   /// Returns a single photo metadata by the given **date**
-  func getPhoto(date: String) -> Observable<(NASAPhotoMeta?, Error?)>
+  func getPhotoMetaData(date: String) -> Observable<(NASAPhotoMeta?, Error?)>
 }
 //
 class PhotosMetaDataServiceImplementation: PhotoMetaDataService {
   
   let networkClient = NetworkClient(baseUrlString: BasicURLs.NASA)
   
-  func getPhotos(days: Int) -> Observable<([NASAPhotoMeta]?, Error?)> {
+  func getPhotoMetaDatas(days: Int) -> Observable<([NASAPhotoMeta]?, Error?)> {
     
     let parameter = [
       "api_key": APIKeys.NASA,
@@ -35,7 +35,7 @@ class PhotosMetaDataServiceImplementation: PhotoMetaDataService {
     )
   }
   
-  func getPhoto(date: String) -> Observable<(NASAPhotoMeta?, Error?)> {
+  func getPhotoMetaData(date: String) -> Observable<(NASAPhotoMeta?, Error?)> {
 
     let parameter = [
       "api_key": APIKeys.NASA,

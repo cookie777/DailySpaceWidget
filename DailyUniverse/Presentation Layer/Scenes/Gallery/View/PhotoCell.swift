@@ -50,8 +50,10 @@ extension PhotoCell {
     self.contentView.addSubview(activityIndicator)
     self.addSubview(titleLabel)
     self.contentView.backgroundColor = .systemGreen
+    self.contentView.layer.borderWidth = 4.0
+    self.contentView.layer.borderColor = UIColor.black.cgColor
     
-    titleLabel.matchParent()
+    titleLabel.centerXYin(contentView)
     imageView.matchParent()
   }
 }

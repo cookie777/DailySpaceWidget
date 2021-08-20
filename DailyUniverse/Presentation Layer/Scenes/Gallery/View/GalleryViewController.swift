@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class GalleryViewController: UIViewController {
   
@@ -14,10 +15,13 @@ class GalleryViewController: UIViewController {
   var disposeBag = DisposeBag()
   
   var dataSource: DataSource!
-  var flip: Bool = false
   
   var collectionView: UICollectionView = {
     let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    cv.register(
+      PhotoCell.self,
+      forCellWithReuseIdentifier: PhotoCell.identifier
+    )
     cv.backgroundColor = .systemPink
     cv.translatesAutoresizingMaskIntoConstraints = false
     return cv
@@ -28,72 +32,54 @@ class GalleryViewController: UIViewController {
     
     setUpUI()
     setUpDiffableDataSource()
-    
-    for i in 0...100 {
-      viewModel.snapshot.appendItems([.photo(Photo(title: String(i)))], toSection: .gallery)
-    }
-    
 
-    dataSource.apply(viewModel.snapshot, animatingDifferences: true, completion: nil)
-    //    let s = PhotosMetaDataServiceImplementation()
-    //    s.getPhoto(date: Date.getPastDate()).subscribe { (metas, error) in
-    //      print(error)
-    //      print(metas)
-    //    }.disposed(by: disposeBag)
-
-        collectionView.rx.itemSelected.subscribe { indexPath in
-          
-            if self.flip {
-//              UIView.animate(withDuration: 0.5) {
-                self.collectionView.setCollectionViewLayout(self.createGalleryCompositionalLayout(), animated: true)
-//              }
-//              self.collectionView.reloadData()
-                self.flip = false
-//              }
-              
-            } else {
-//              DispatchQueue.main.async {
-//                UIView.animate(withDuration: 0.5) {
-                  self.collectionView.setCollectionViewLayout(self.createFocusCompositionalLayout(), animated: true)
-//                  self.collectionView.scrollToItem(at: indexPath.element!, at: .bottom, animated: false)
-                  self.flip = true
-//                }
-//              }
-            }
-
-            
-        }.disposed(by: disposeBag)
+//    viewModel.getPhotoMetaData()
     
+    viewModel.photos.accept([
+      Photo(copyright: nil, date: nil, explanation: nil, imageUrl: nil, title: "test1"),
+      Photo(copyright: nil, date: nil, explanation: nil, imageUrl: nil, title: "test2"),
+      Photo(copyright: nil, date: nil, explanation: nil, imageUrl: nil, title: "test3"),
+    ])
+  
+    viewModel.photos.bind { [weak self] photos in
+      guard let self = self else { return }
+      self.viewModel.snapshot.appendItems(Item.wrap(items: photos), toSection: .gallery)
+
+      DispatchQueue.main.async {
+          self.dataSource.apply(self.viewModel.snapshot, animatingDifferences: false) {
+//            self.collectionView.scrollToItem(at: IndexPath(item: photos.count-1, section: 0), at: .right , animated: false)
+          }
+      }
+
+    }.disposed(by: disposeBag)
     
   }
+
 }
-
-
-
 
 extension GalleryViewController {
   
-  func setUpDiffableDataSource(){
-    
-    collectionView.register(
-      PhotoCell.self,
-      forCellWithReuseIdentifier: PhotoCell.identifier
-    )
-    
-    dataSource = DataSource(
-      collectionView: collectionView,
-      cellProvider:
-        { (collectionView, indexPath, item) -> UICollectionViewCell? in
-          
-          guard let item = item.photo else { return nil }
-          guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as? PhotoCell else { return nil }
-          cell.titleLabel.text = item.title
-          return cell
-        }
-    )
-    
-    dataSource?.apply(viewModel.snapshot, animatingDifferences: false, completion: nil)
-  }
+    func setUpDiffableDataSource(){
+  
+      collectionView.register(
+        PhotoCell.self,
+        forCellWithReuseIdentifier: PhotoCell.identifier
+      )
+  
+      dataSource = DataSource(
+        collectionView: collectionView,
+        cellProvider:
+          { (collectionView, indexPath, item) -> UICollectionViewCell? in
+  
+            guard let item = item.photo else { return nil }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as? PhotoCell else { return nil }
+            cell.titleLabel.text = item.title
+            return cell
+          }
+      )
+  
+      dataSource?.apply(viewModel.snapshot, animatingDifferences: false, completion: nil)
+    }
   
 }
 
@@ -102,9 +88,10 @@ extension GalleryViewController {
   func setUpUI() {
     view.backgroundColor = .systemTeal
     view.addSubview(collectionView)
+    
     collectionView.matchParent()
-    // Config compositionalLayout
-    collectionView.setCollectionViewLayout(createGalleryCompositionalLayout(), animated: false)
+    collectionView.setCollectionViewLayout(createFocusCompositionalLayout(), animated: false)
+    collectionView.isScrollEnabled = false
   }
   
   private func createGalleryCompositionalLayout() -> UICollectionViewCompositionalLayout {
@@ -150,7 +137,7 @@ extension GalleryViewController {
       widthDimension: .fractionalWidth(1.0),
       heightDimension: .fractionalHeight(1.0)
     )
-    let group = NSCollectionLayoutGroup.horizontal(
+    let group = NSCollectionLayoutGroup.vertical(
       layoutSize: groupSize,
       subitem: item,
       count: 1
@@ -158,9 +145,14 @@ extension GalleryViewController {
     
     // Section
     let section = NSCollectionLayoutSection(group: group)
-//    section.orthogonalScrollingBehavior = .groupPaging
-
-    return UICollectionViewCompositionalLayout(section: section)
+    section.contentInsets = .zero
+    section.orthogonalScrollingBehavior = .groupPaging
+    
+    let config = UICollectionViewCompositionalLayoutConfiguration()
+    config.scrollDirection = .horizontal
+    config.contentInsetsReference = .automatic
+    
+    return UICollectionViewCompositionalLayout(section: section, configuration: config)
   }
-
+  
 }

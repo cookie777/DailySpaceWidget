@@ -20,11 +20,11 @@ class PhotoCell: UICollectionViewCell {
   }
   
   // MARK: - Properties
-  lazy var imageView: UIImageView = {
-    let imageView = UIImageView()
-    imageView.contentMode = .scaleAspectFit
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    return imageView
+
+  lazy var imageViewContainer: PanZoomImageContainer = {
+    let container = PanZoomImageContainer()
+    container.translatesAutoresizingMaskIntoConstraints = false
+    return container
   }()
   
   lazy var activityIndicator: UIActivityIndicatorView = {
@@ -46,14 +46,14 @@ class PhotoCell: UICollectionViewCell {
 // MARK: - UI Setup
 extension PhotoCell {
   private func setupUI() {
-    self.contentView.addSubview(imageView)
+    self.contentView.addSubview(imageViewContainer)
     self.contentView.addSubview(activityIndicator)
-    self.addSubview(titleLabel)
+//    self.addSubview(titleLabel)
     self.contentView.backgroundColor = .systemGreen
     self.contentView.layer.borderWidth = 4.0
     self.contentView.layer.borderColor = UIColor.black.cgColor
     
-    titleLabel.centerXYin(contentView)
-    imageView.matchParent()
+//    titleLabel.centerXYin(contentView)
+    imageViewContainer.matchParent()
   }
 }

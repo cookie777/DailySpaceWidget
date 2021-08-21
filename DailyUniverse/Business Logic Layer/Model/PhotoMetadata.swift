@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct Photo: Hashable {
+struct PhotoMetadata: Hashable {
   let copyright: String?
   let date: String?
   let explanation: String?
-  let imageUrl: String?
+  let imageHDURL: URL?
+  let imageURL: URL?
   let title: String?
 }

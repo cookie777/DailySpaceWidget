@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct NASAPhotoMeta: Codable {
+struct NASAPhotoMetadata: Codable {
   let copyright: String?
   let date: String?
   let explanation: String?
-  let hdUrl: String?
+  let hdURL: String?
   let url: String?
   let mediaType: String?
   let title: String?
   
   enum CodingKeys: String, CodingKey {
     case copyright, date, explanation, url, title
-    case hdUrl = "hdurl"
+    case hdURL = "hdurl"
     case mediaType = "media_type"
   }
 }

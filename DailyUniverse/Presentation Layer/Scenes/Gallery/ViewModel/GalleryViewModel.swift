@@ -11,47 +11,61 @@ import RxCocoa
 
 class GalleryViewModel {
   
-  var snapshot: Snapshot!
-  
   var disposeBag = DisposeBag()
-  //  var photos: Array<Photo> = []
-  var photos = BehaviorRelay<[Photo]>(value: [])
+  var photosMetadata = BehaviorRelay<[PhotoMetadata]>(value: [])
   
-  private var photoMetaDataService: PhotoMetaDataService!
+  private var photoMetadataService: PhotoMetadataService!
   
-  init(photoMetaDataService: PhotoMetaDataService) {
-    self.photoMetaDataService = photoMetaDataService
-    snapshot = Snapshot()
-    snapshot.appendSections([.gallery])
+  init(photoMetadataService: PhotoMetadataService) {
+    self.photoMetadataService = photoMetadataService
   }
   
   // MARK: - Service Methods
-  func getPhotoMetaData() {
+  func getPhotoMetadata() {
     
-    photoMetaDataService.getPhotoMetaDatas(days: 10)
+    photoMetadataService.getPhotosMetadata(days: 10)
+      // eliminate error
       .filter { $0.0 != nil && $0.1 == nil }
       .compactMap {  photos, _  in
-        photos?.filter({$0.mediaType == "image"})
-      }
-      .flatMap { photos -> Observable<[NASAPhotoMeta]> in
-        if photos.count > 7 {
-          return Observable.just(Array(photos[0 ..< 7]))
-        }
-        return  Observable.just(photos)
+      // image type only, latest n
+        photos?
+          .filter({$0.mediaType == "image"})
+          .reversed()
+          .reduce(into: [NASAPhotoMetadata](), { result, metadata in
+            if result.count < 3 {
+              result.append(metadata)
+            }
+        })
       }
       .map { photos in
-        photos.map { photo in
-          Photo(
+        return photos.map { photo in
+          let hdURL = photo.hdURL == nil ? nil : URL(string: photo.hdURL!)
+          let url = photo.url == nil ? nil : URL(string: photo.url!)
+          
+          return PhotoMetadata(
             copyright: photo.copyright,
             date: photo.date,
             explanation: photo.explanation,
-            imageUrl: photo.url,
+            imageHDURL: hdURL,
+            imageURL: url,
             title: photo.title
           )
         }
       }
-      .bind(to: photos)
+      .bind(to: photosMetadata)
       .disposed(by: disposeBag)
+    
+  }
+  
+  func getMockMetadata() {
+    var photosMetadata: [PhotoMetadata] = []
+    
+    let placeHolder = URL(string: "https://raw.githubusercontent.com/cookie777/images/main/common/sample.png")
+    for i in 0...10 {
+      photosMetadata.append(PhotoMetadata(copyright: nil, date: nil, explanation: nil, imageHDURL: placeHolder, imageURL: placeHolder, title: String(i)))
+    }
+    
+    self.photosMetadata.accept(photosMetadata)
     
   }
   

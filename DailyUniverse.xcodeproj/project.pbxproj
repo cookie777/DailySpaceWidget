@@ -14,14 +14,13 @@
 		48B8769626CB75D000EE0B21 /* BaseURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769526CB75D000EE0B21 /* BaseURLs.swift */; };
 		48B8769826CB75EA00EE0B21 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769726CB75EA00EE0B21 /* EndPoints.swift */; };
 		48B8769B26CC63BC00EE0B21 /* Date+currentDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769A26CC63BC00EE0B21 /* Date+currentDay.swift */; };
-		48B8769E26CC698200EE0B21 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769D26CC698200EE0B21 /* Section.swift */; };
-		48B876A026CC698B00EE0B21 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769F26CC698B00EE0B21 /* Item.swift */; };
-		48B876A226CC6A2400EE0B21 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876A126CC6A2400EE0B21 /* Photo.swift */; };
+		48B876A226CC6A2400EE0B21 /* PhotoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876A126CC6A2400EE0B21 /* PhotoMetadata.swift */; };
 		48B876A526CC6C6300EE0B21 /* HorizontalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876A326CC6C6300EE0B21 /* HorizontalStackView.swift */; };
 		48B876A626CC6C6300EE0B21 /* DynamicHeightScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876A426CC6C6300EE0B21 /* DynamicHeightScrollView.swift */; };
 		48B876A926CC6C7500EE0B21 /* UIView+ConstraintLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876A726CC6C7500EE0B21 /* UIView+ConstraintLayout.swift */; };
 		48B876AA26CC6C7500EE0B21 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876A826CC6C7500EE0B21 /* VerticalStackView.swift */; };
 		48B876AE26CC6D6200EE0B21 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876AD26CC6D6200EE0B21 /* PhotoCell.swift */; };
+		48B876D726CF45C500EE0B21 /* PanZoomImageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876D626CF45C500EE0B21 /* PanZoomImageContainer.swift */; };
 		48E784E826CB1B0300D209EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E784E726CB1B0300D209EF /* AppDelegate.swift */; };
 		48E784EA26CB1B0300D209EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E784E926CB1B0300D209EF /* SceneDelegate.swift */; };
 		48E784F126CB1B0500D209EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48E784F026CB1B0500D209EF /* Assets.xcassets */; };
@@ -31,8 +30,8 @@
 		48E7850C26CB234600D209EF /* GalleryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7850B26CB234600D209EF /* GalleryCoordinator.swift */; };
 		48E7850E26CB247D00D209EF /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7850D26CB247D00D209EF /* GalleryViewController.swift */; };
 		48E7851026CB264000D209EF /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7850F26CB264000D209EF /* GalleryViewModel.swift */; };
-		48E7851326CB27CA00D209EF /* NASAPhotoMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851226CB27CA00D209EF /* NASAPhotoMeta.swift */; };
-		48E7851626CB2B4500D209EF /* PhotoMetaServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851526CB2B4500D209EF /* PhotoMetaServices.swift */; };
+		48E7851326CB27CA00D209EF /* NASAPhotoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851226CB27CA00D209EF /* NASAPhotoMetadata.swift */; };
+		48E7851626CB2B4500D209EF /* PhotoMetadataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851526CB2B4500D209EF /* PhotoMetadataServices.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,14 +42,13 @@
 		48B8769526CB75D000EE0B21 /* BaseURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLs.swift; sourceTree = "<group>"; };
 		48B8769726CB75EA00EE0B21 /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
 		48B8769A26CC63BC00EE0B21 /* Date+currentDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+currentDay.swift"; sourceTree = "<group>"; };
-		48B8769D26CC698200EE0B21 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
-		48B8769F26CC698B00EE0B21 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		48B876A126CC6A2400EE0B21 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		48B876A126CC6A2400EE0B21 /* PhotoMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMetadata.swift; sourceTree = "<group>"; };
 		48B876A326CC6C6300EE0B21 /* HorizontalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalStackView.swift; sourceTree = "<group>"; };
 		48B876A426CC6C6300EE0B21 /* DynamicHeightScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightScrollView.swift; sourceTree = "<group>"; };
 		48B876A726CC6C7500EE0B21 /* UIView+ConstraintLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintLayout.swift"; sourceTree = "<group>"; };
 		48B876A826CC6C7500EE0B21 /* VerticalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		48B876AD26CC6D6200EE0B21 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		48B876D626CF45C500EE0B21 /* PanZoomImageContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanZoomImageContainer.swift; sourceTree = "<group>"; };
 		48E784E426CB1B0300D209EF /* DailyUniverse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyUniverse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E784E726CB1B0300D209EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48E784E926CB1B0300D209EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,8 +60,8 @@
 		48E7850B26CB234600D209EF /* GalleryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCoordinator.swift; sourceTree = "<group>"; };
 		48E7850D26CB247D00D209EF /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		48E7850F26CB264000D209EF /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
-		48E7851226CB27CA00D209EF /* NASAPhotoMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoMeta.swift; sourceTree = "<group>"; };
-		48E7851526CB2B4500D209EF /* PhotoMetaServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMetaServices.swift; sourceTree = "<group>"; };
+		48E7851226CB27CA00D209EF /* NASAPhotoMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoMetadata.swift; sourceTree = "<group>"; };
+		48E7851526CB2B4500D209EF /* PhotoMetadataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMetadataServices.swift; sourceTree = "<group>"; };
 		8E4B43953C826A54A8929352 /* Pods-DailyUniverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyUniverse.release.xcconfig"; path = "Target Support Files/Pods-DailyUniverse/Pods-DailyUniverse.release.xcconfig"; sourceTree = "<group>"; };
 		93E268A9DACADC0A216DDB85 /* Pods_DailyUniverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyUniverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,11 +107,8 @@
 		48B8769926CC63A200EE0B21 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				48B876A726CC6C7500EE0B21 /* UIView+ConstraintLayout.swift */,
-				48B876A826CC6C7500EE0B21 /* VerticalStackView.swift */,
-				48B876A426CC6C6300EE0B21 /* DynamicHeightScrollView.swift */,
-				48B876A326CC6C6300EE0B21 /* HorizontalStackView.swift */,
-				48B8769A26CC63BC00EE0B21 /* Date+currentDay.swift */,
+				48B876E126D0B05900EE0B21 /* SubClass */,
+				48B876E026D0B05300EE0B21 /* Extension */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -126,6 +121,26 @@
 				48B8768C26CB4E0500EE0B21 /* Network Client */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		48B876E026D0B05300EE0B21 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				48B8769A26CC63BC00EE0B21 /* Date+currentDay.swift */,
+				48B876A726CC6C7500EE0B21 /* UIView+ConstraintLayout.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		48B876E126D0B05900EE0B21 /* SubClass */ = {
+			isa = PBXGroup;
+			children = (
+				48B876A826CC6C7500EE0B21 /* VerticalStackView.swift */,
+				48B876A426CC6C6300EE0B21 /* DynamicHeightScrollView.swift */,
+				48B876A326CC6C6300EE0B21 /* HorizontalStackView.swift */,
+				48B876D626CF45C500EE0B21 /* PanZoomImageContainer.swift */,
+			);
+			path = SubClass;
 			sourceTree = "<group>";
 		};
 		48E784DB26CB1B0300D209EF = {
@@ -267,10 +282,8 @@
 		48E7851126CB278D00D209EF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				48E7851226CB27CA00D209EF /* NASAPhotoMeta.swift */,
-				48B876A126CC6A2400EE0B21 /* Photo.swift */,
-				48B8769D26CC698200EE0B21 /* Section.swift */,
-				48B8769F26CC698B00EE0B21 /* Item.swift */,
+				48E7851226CB27CA00D209EF /* NASAPhotoMetadata.swift */,
+				48B876A126CC6A2400EE0B21 /* PhotoMetadata.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -278,7 +291,7 @@
 		48E7851426CB2B2500D209EF /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				48E7851526CB2B4500D209EF /* PhotoMetaServices.swift */,
+				48E7851526CB2B4500D209EF /* PhotoMetadataServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -413,7 +426,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48B8769E26CC698200EE0B21 /* Section.swift in Sources */,
 				48B876A626CC6C6300EE0B21 /* DynamicHeightScrollView.swift in Sources */,
 				48E7850326CB206400D209EF /* Coordinator.swift in Sources */,
 				48B8769826CB75EA00EE0B21 /* EndPoints.swift in Sources */,
@@ -424,17 +436,17 @@
 				48B8768E26CB4E0500EE0B21 /* NetworkClient.swift in Sources */,
 				48E7850526CB20A600D209EF /* AppCoordinator.swift in Sources */,
 				48E784E826CB1B0300D209EF /* AppDelegate.swift in Sources */,
-				48B876A026CC698B00EE0B21 /* Item.swift in Sources */,
 				48E7851026CB264000D209EF /* GalleryViewModel.swift in Sources */,
-				48B876A226CC6A2400EE0B21 /* Photo.swift in Sources */,
+				48B876D726CF45C500EE0B21 /* PanZoomImageContainer.swift in Sources */,
+				48B876A226CC6A2400EE0B21 /* PhotoMetadata.swift in Sources */,
 				48B8769B26CC63BC00EE0B21 /* Date+currentDay.swift in Sources */,
 				48B876AA26CC6C7500EE0B21 /* VerticalStackView.swift in Sources */,
 				48E784EA26CB1B0300D209EF /* SceneDelegate.swift in Sources */,
-				48E7851626CB2B4500D209EF /* PhotoMetaServices.swift in Sources */,
+				48E7851626CB2B4500D209EF /* PhotoMetadataServices.swift in Sources */,
 				48B8769126CB4E3F00EE0B21 /* NetworkError.swift in Sources */,
 				48E7850C26CB234600D209EF /* GalleryCoordinator.swift in Sources */,
 				48B876A926CC6C7500EE0B21 /* UIView+ConstraintLayout.swift in Sources */,
-				48E7851326CB27CA00D209EF /* NASAPhotoMeta.swift in Sources */,
+				48E7851326CB27CA00D209EF /* NASAPhotoMetadata.swift in Sources */,
 				48B876A526CC6C6300EE0B21 /* HorizontalStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

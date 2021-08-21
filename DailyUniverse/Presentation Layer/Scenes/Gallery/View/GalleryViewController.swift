@@ -8,13 +8,14 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
+
+// MARK: - Properties
 
 class GalleryViewController: UIViewController {
   
   var viewModel: GalleryViewModel!
   var disposeBag = DisposeBag()
-  
-  var dataSource: DataSource!
   
   var collectionView: UICollectionView = {
     let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
@@ -22,66 +23,65 @@ class GalleryViewController: UIViewController {
       PhotoCell.self,
       forCellWithReuseIdentifier: PhotoCell.identifier
     )
+    cv.isScrollEnabled = false
     cv.backgroundColor = .systemPink
     cv.translatesAutoresizingMaskIntoConstraints = false
     return cv
   }()
   
+}
+
+
+// MARK: - Lifecycle Methods
+
+extension GalleryViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
     setUpUI()
-    setUpDiffableDataSource()
-
-//    viewModel.getPhotoMetaData()
+    bindCollectionView()
     
-    viewModel.photos.accept([
-      Photo(copyright: nil, date: nil, explanation: nil, imageUrl: nil, title: "test1"),
-      Photo(copyright: nil, date: nil, explanation: nil, imageUrl: nil, title: "test2"),
-      Photo(copyright: nil, date: nil, explanation: nil, imageUrl: nil, title: "test3"),
-    ])
-  
-    viewModel.photos.bind { [weak self] photos in
-      guard let self = self else { return }
-      self.viewModel.snapshot.appendItems(Item.wrap(items: photos), toSection: .gallery)
-
-      DispatchQueue.main.async {
-          self.dataSource.apply(self.viewModel.snapshot, animatingDifferences: false) {
-//            self.collectionView.scrollToItem(at: IndexPath(item: photos.count-1, section: 0), at: .right , animated: false)
-          }
-      }
-
-    }.disposed(by: disposeBag)
-    
+//    viewModel.getPhotoMetadata()
+    viewModel.getMockMetadata()
   }
-
 }
+
+// MARK: - Bindings
 
 extension GalleryViewController {
-  
-    func setUpDiffableDataSource(){
-  
-      collectionView.register(
-        PhotoCell.self,
-        forCellWithReuseIdentifier: PhotoCell.identifier
-      )
-  
-      dataSource = DataSource(
-        collectionView: collectionView,
-        cellProvider:
-          { (collectionView, indexPath, item) -> UICollectionViewCell? in
-  
-            guard let item = item.photo else { return nil }
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as? PhotoCell else { return nil }
-            cell.titleLabel.text = item.title
-            return cell
-          }
-      )
-  
-      dataSource?.apply(viewModel.snapshot, animatingDifferences: false, completion: nil)
-    }
-  
+  private func bindCollectionView() {
+    viewModel.photosMetadata
+      .bind(to: collectionView.rx.items(
+              cellIdentifier: PhotoCell.identifier,
+              cellType: PhotoCell.self)) { row, item, cell in
+        cell.titleLabel.text = item.title
+      }
+      .disposed(by: disposeBag)
+
+    collectionView.rx.willDisplayCell
+      .filter { $0.cell.isKind(of: PhotoCell.self) }
+      .map { ($0.cell as! PhotoCell, $0.at.item) }
+      .do(onNext: { (cell, index) in cell.imageViewContainer.imageView.image = nil })
+      .subscribe(onNext: { [weak self] (cell, index) in
+        guard let self = self else { return }
+        
+        let item = self.viewModel.photosMetadata.value[index]
+       //  Use `KF` builder
+        KF.url(item.imageHDURL)
+          .loadDiskFileSynchronously()
+          .cacheOriginalImage()
+          .fade(duration: 0.25)
+          .lowDataModeSource(.network(ImageResource(downloadURL: item.imageURL!)))
+          .onSuccess { result in  }
+          .onFailure { error in }
+          .set(to: cell.imageViewContainer.imageView )
+      })
+      .disposed(by: disposeBag)
+  }
 }
+
+
+// MARK: - UI setups
 
 extension GalleryViewController {
   
@@ -90,54 +90,24 @@ extension GalleryViewController {
     view.addSubview(collectionView)
     
     collectionView.matchParent()
-    collectionView.setCollectionViewLayout(createFocusCompositionalLayout(), animated: false)
-    collectionView.isScrollEnabled = false
+    collectionView.setCollectionViewLayout(createCompositionalLayout(), animated: false)
   }
   
-  private func createGalleryCompositionalLayout() -> UICollectionViewCompositionalLayout {
+  private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
     
     // Item
     let itemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(0.5),
-      heightDimension: .fractionalWidth(0.5)
+      widthDimension: .fractionalWidth(1.0),
+      heightDimension: .fractionalHeight(1.0)
     )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     
     // Group
     let groupSize = NSCollectionLayoutSize(
       widthDimension: .fractionalWidth(1.0),
-      heightDimension: itemSize.heightDimension
+      heightDimension: .fractionalHeight(1.0)
     )
     let group = NSCollectionLayoutGroup.horizontal(
-      layoutSize: groupSize,
-      subitem: item,
-      count: 2
-    )
-    group.interItemSpacing = .fixed(16)
-    
-    // Section
-    let section = NSCollectionLayoutSection(group: group)
-    section.interGroupSpacing = 8
-    section.orthogonalScrollingBehavior = .none
-    
-    return UICollectionViewCompositionalLayout(section: section)
-  }
-  
-  private func createFocusCompositionalLayout() -> UICollectionViewCompositionalLayout {
-    
-    // Item
-    let itemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1.0),
-      heightDimension: .fractionalHeight(1.0)
-    )
-    let item = NSCollectionLayoutItem(layoutSize: itemSize)
-    
-    // Group
-    let groupSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1.0),
-      heightDimension: .fractionalHeight(1.0)
-    )
-    let group = NSCollectionLayoutGroup.vertical(
       layoutSize: groupSize,
       subitem: item,
       count: 1
@@ -145,9 +115,7 @@ extension GalleryViewController {
     
     // Section
     let section = NSCollectionLayoutSection(group: group)
-    section.contentInsets = .zero
     section.orthogonalScrollingBehavior = .groupPaging
-    
     let config = UICollectionViewCompositionalLayoutConfiguration()
     config.scrollDirection = .horizontal
     config.contentInsetsReference = .automatic

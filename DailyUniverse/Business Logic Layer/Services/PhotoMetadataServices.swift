@@ -8,19 +8,19 @@
 import Foundation
 import RxSwift
 
-protocol PhotoMetaDataService: AnyObject {
+protocol PhotoMetadataService: AnyObject {
   /// Returns by default past 10 photos metadata
-  func getPhotoMetaDatas(days: Int) -> Observable<([NASAPhotoMeta]?, Error?)>
+  func getPhotosMetadata(days: Int) -> Observable<([NASAPhotoMetadata]?, Error?)>
   
   /// Returns a single photo metadata by the given **date**
-  func getPhotoMetaData(date: String) -> Observable<(NASAPhotoMeta?, Error?)>
+  func getPhotoMetadata(date: String) -> Observable<(NASAPhotoMetadata?, Error?)>
 }
 //
-class PhotosMetaDataServiceImplementation: PhotoMetaDataService {
+class PhotosMetadataServiceImplementation: PhotoMetadataService {
   
   let networkClient = NetworkClient(baseUrlString: BasicURLs.NASA)
   
-  func getPhotoMetaDatas(days: Int) -> Observable<([NASAPhotoMeta]?, Error?)> {
+  func getPhotosMetadata(days: Int) -> Observable<([NASAPhotoMetadata]?, Error?)> {
     
     let parameter = [
       "api_key": APIKeys.NASA,
@@ -28,21 +28,21 @@ class PhotosMetaDataServiceImplementation: PhotoMetaDataService {
     ]
     
     return networkClient.getArray(
-      [NASAPhotoMeta].self,
+      [NASAPhotoMetadata].self,
       EndPoints.NASAapod,
       parameters: parameter,
       printURL: true
     )
   }
   
-  func getPhotoMetaData(date: String) -> Observable<(NASAPhotoMeta?, Error?)> {
+  func getPhotoMetadata(date: String) -> Observable<(NASAPhotoMetadata?, Error?)> {
 
     let parameter = [
       "api_key": APIKeys.NASA,
     ]
     
     return networkClient.get(
-      NASAPhotoMeta.self,
+      NASAPhotoMetadata.self,
       EndPoints.NASAapod,
       parameters: parameter,
       printURL: true

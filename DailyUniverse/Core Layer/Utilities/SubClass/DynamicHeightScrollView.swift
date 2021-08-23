@@ -16,7 +16,7 @@ class DynamicHeightScrollView: UIScrollView {
     super.init(frame: .zero)
     
     self.translatesAutoresizingMaskIntoConstraints = false
-    configureContentView(padding)
+    self.setUpContentView(padding)
   }
   
   init() {
@@ -28,7 +28,7 @@ class DynamicHeightScrollView: UIScrollView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func configureContentView(_ inset: UIEdgeInsets) {
+  func setUpContentView(_ inset: UIEdgeInsets) {
     guard let contentView = contentView else { return }
     self.addSubview(contentView)
     
@@ -44,6 +44,7 @@ class DynamicHeightScrollView: UIScrollView {
       contentView.topAnchor.constraint(equalTo: contentLayoutGuide.topAnchor, constant: inset.top),
       contentView.leadingAnchor.constraint(equalTo: contentLayoutGuide.leadingAnchor, constant: inset.left),
     ])
+    
     contentView.anchors(
       topAnchor: contentLayoutGuide.topAnchor,
       leadingAnchor: contentLayoutGuide.leadingAnchor,

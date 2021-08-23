@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0B33B7EB36FA2F1DDC38B13D /* Pods_DailyUniverse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E268A9DACADC0A216DDB85 /* Pods_DailyUniverse.framework */; };
+		4828FFDF26D1CE2600D8EAE3 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFDE26D1CE2600D8EAE3 /* DetailCoordinator.swift */; };
+		4828FFE126D1CE3100D8EAE3 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE026D1CE3100D8EAE3 /* DetailViewModel.swift */; };
+		4828FFE326D1CE4300D8EAE3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE226D1CE4300D8EAE3 /* DetailViewController.swift */; };
+		4828FFE626D3694B00D8EAE3 /* PhotoMetadataStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE526D3694B00D8EAE3 /* PhotoMetadataStorageService.swift */; };
 		48B8768E26CB4E0500EE0B21 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8768D26CB4E0500EE0B21 /* NetworkClient.swift */; };
 		48B8769126CB4E3F00EE0B21 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769026CB4E3F00EE0B21 /* NetworkError.swift */; };
 		48B8769426CB75BC00EE0B21 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769326CB75BC00EE0B21 /* APIKeys.swift */; };
@@ -21,6 +25,8 @@
 		48B876AA26CC6C7500EE0B21 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876A826CC6C7500EE0B21 /* VerticalStackView.swift */; };
 		48B876AE26CC6D6200EE0B21 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876AD26CC6D6200EE0B21 /* PhotoCell.swift */; };
 		48B876D726CF45C500EE0B21 /* PanZoomImageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876D626CF45C500EE0B21 /* PanZoomImageContainer.swift */; };
+		48B876E326D0B29300EE0B21 /* UIImage+createSFIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876E226D0B29300EE0B21 /* UIImage+createSFIcon.swift */; };
+		48B876E626D0B4F600EE0B21 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876E526D0B4F600EE0B21 /* Constant.swift */; };
 		48E784E826CB1B0300D209EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E784E726CB1B0300D209EF /* AppDelegate.swift */; };
 		48E784EA26CB1B0300D209EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E784E926CB1B0300D209EF /* SceneDelegate.swift */; };
 		48E784F126CB1B0500D209EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48E784F026CB1B0500D209EF /* Assets.xcassets */; };
@@ -36,6 +42,10 @@
 
 /* Begin PBXFileReference section */
 		0C18CC1EAAD8BBE1591FF703 /* Pods-DailyUniverse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyUniverse.debug.xcconfig"; path = "Target Support Files/Pods-DailyUniverse/Pods-DailyUniverse.debug.xcconfig"; sourceTree = "<group>"; };
+		4828FFDE26D1CE2600D8EAE3 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
+		4828FFE026D1CE3100D8EAE3 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		4828FFE226D1CE4300D8EAE3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		4828FFE526D3694B00D8EAE3 /* PhotoMetadataStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMetadataStorageService.swift; sourceTree = "<group>"; };
 		48B8768D26CB4E0500EE0B21 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		48B8769026CB4E3F00EE0B21 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		48B8769326CB75BC00EE0B21 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
@@ -49,6 +59,8 @@
 		48B876A826CC6C7500EE0B21 /* VerticalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		48B876AD26CC6D6200EE0B21 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		48B876D626CF45C500EE0B21 /* PanZoomImageContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanZoomImageContainer.swift; sourceTree = "<group>"; };
+		48B876E226D0B29300EE0B21 /* UIImage+createSFIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+createSFIcon.swift"; sourceTree = "<group>"; };
+		48B876E526D0B4F600EE0B21 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		48E784E426CB1B0300D209EF /* DailyUniverse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyUniverse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E784E726CB1B0300D209EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48E784E926CB1B0300D209EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +90,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4828FFDA26D1CDA500D8EAE3 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				4828FFDB26D1CDCF00D8EAE3 /* Coordinator */,
+				4828FFDC26D1CDD700D8EAE3 /* ViewModel */,
+				4828FFDD26D1CDEF00D8EAE3 /* View */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		4828FFDB26D1CDCF00D8EAE3 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				4828FFDE26D1CE2600D8EAE3 /* DetailCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		4828FFDC26D1CDD700D8EAE3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4828FFE026D1CE3100D8EAE3 /* DetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4828FFDD26D1CDEF00D8EAE3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4828FFE226D1CE4300D8EAE3 /* DetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		48B8768C26CB4E0500EE0B21 /* Network Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +153,7 @@
 		48B8769926CC63A200EE0B21 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				48B876E426D0B4AF00EE0B21 /* Constant */,
 				48B876E126D0B05900EE0B21 /* SubClass */,
 				48B876E026D0B05300EE0B21 /* Extension */,
 			);
@@ -128,6 +175,7 @@
 			children = (
 				48B8769A26CC63BC00EE0B21 /* Date+currentDay.swift */,
 				48B876A726CC6C7500EE0B21 /* UIView+ConstraintLayout.swift */,
+				48B876E226D0B29300EE0B21 /* UIImage+createSFIcon.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -141,6 +189,14 @@
 				48B876D626CF45C500EE0B21 /* PanZoomImageContainer.swift */,
 			);
 			path = SubClass;
+			sourceTree = "<group>";
+		};
+		48B876E426D0B4AF00EE0B21 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				48B876E526D0B4F600EE0B21 /* Constant.swift */,
+			);
+			path = Constant;
 			sourceTree = "<group>";
 		};
 		48E784DB26CB1B0300D209EF = {
@@ -240,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				48E7850726CB22D200D209EF /* Gallery */,
+				4828FFDA26D1CDA500D8EAE3 /* Detail */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -292,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				48E7851526CB2B4500D209EF /* PhotoMetadataServices.swift */,
+				4828FFE526D3694B00D8EAE3 /* PhotoMetadataStorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -434,16 +492,22 @@
 				48B8769626CB75D000EE0B21 /* BaseURLs.swift in Sources */,
 				48B8769426CB75BC00EE0B21 /* APIKeys.swift in Sources */,
 				48B8768E26CB4E0500EE0B21 /* NetworkClient.swift in Sources */,
+				4828FFDF26D1CE2600D8EAE3 /* DetailCoordinator.swift in Sources */,
+				4828FFE326D1CE4300D8EAE3 /* DetailViewController.swift in Sources */,
+				4828FFE126D1CE3100D8EAE3 /* DetailViewModel.swift in Sources */,
 				48E7850526CB20A600D209EF /* AppCoordinator.swift in Sources */,
 				48E784E826CB1B0300D209EF /* AppDelegate.swift in Sources */,
 				48E7851026CB264000D209EF /* GalleryViewModel.swift in Sources */,
+				48B876E626D0B4F600EE0B21 /* Constant.swift in Sources */,
 				48B876D726CF45C500EE0B21 /* PanZoomImageContainer.swift in Sources */,
 				48B876A226CC6A2400EE0B21 /* PhotoMetadata.swift in Sources */,
 				48B8769B26CC63BC00EE0B21 /* Date+currentDay.swift in Sources */,
+				48B876E326D0B29300EE0B21 /* UIImage+createSFIcon.swift in Sources */,
 				48B876AA26CC6C7500EE0B21 /* VerticalStackView.swift in Sources */,
 				48E784EA26CB1B0300D209EF /* SceneDelegate.swift in Sources */,
 				48E7851626CB2B4500D209EF /* PhotoMetadataServices.swift in Sources */,
 				48B8769126CB4E3F00EE0B21 /* NetworkError.swift in Sources */,
+				4828FFE626D3694B00D8EAE3 /* PhotoMetadataStorageService.swift in Sources */,
 				48E7850C26CB234600D209EF /* GalleryCoordinator.swift in Sources */,
 				48B876A926CC6C7500EE0B21 /* UIView+ConstraintLayout.swift in Sources */,
 				48E7851326CB27CA00D209EF /* NASAPhotoMetadata.swift in Sources */,

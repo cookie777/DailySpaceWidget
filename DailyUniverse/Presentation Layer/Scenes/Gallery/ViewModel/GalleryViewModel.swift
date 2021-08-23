@@ -12,13 +12,50 @@ import RxCocoa
 class GalleryViewModel {
   
   var disposeBag = DisposeBag()
+  // input: View -> ViewModel
+  var didTappedOnce = PublishRelay<Void>()
+  var didDescriptionTapped = PublishRelay<Void>()
+  var currentIndex: Int = 0
+  // output: ViewModel -> View
+  var updateButtons = BehaviorRelay<CGFloat>(value: 0.0)
   var photosMetadata = BehaviorRelay<[PhotoMetadata]>(value: [])
   
-  private var photoMetadataService: PhotoMetadataService!
+  let coordinator: GalleryCoordinator!
+  private var photoMetadataService: PhotoMetadataFetchService!
   
-  init(photoMetadataService: PhotoMetadataService) {
+  init(
+    coordinator: GalleryCoordinator,
+    photoMetadataService: PhotoMetadataFetchService
+  ) {
+    self.coordinator = coordinator
     self.photoMetadataService = photoMetadataService
+    
+    bindOnDidTappedOnce()
+    bindOnDidDescriptionTapped()
   }
+  
+  // MARK: - Bindings
+  private func bindOnDidTappedOnce() {
+    didTappedOnce
+      .flatMap({ [weak self] _ in
+        Observable.just(self?.updateButtons.value == 0 ? 1.0 : 0.0)
+      })
+      .bind(to: updateButtons)
+      .disposed(by: disposeBag)
+  }
+  
+  private func bindOnDidDescriptionTapped() {
+    didDescriptionTapped
+      .bind { [weak self] _ in
+        guard let self = self else { return }
+        // hide buttons
+        self.updateButtons.accept(0.0)
+        // coordinate to next
+        let photoMetaData = self.photosMetadata.value[self.currentIndex]
+        self.coordinator.pushToDetail(photoMetadata: photoMetaData)
+      }.disposed(by: disposeBag)
+  }
+  
   
   // MARK: - Service Methods
   func getPhotoMetadata() {
@@ -60,9 +97,18 @@ class GalleryViewModel {
   func getMockMetadata() {
     var photosMetadata: [PhotoMetadata] = []
     
-    let placeHolder = URL(string: "https://raw.githubusercontent.com/cookie777/images/main/common/sample.png")
+    let placeHolder = URL(string: "https://assets.newatlas.com/dims4/default/b89cd58/2147483647/strip/true/crop/925x617+0+232/resize/1200x800!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fchandra-nasa-space-telescope-anniversary-4.jpg")
     for i in 0...10 {
-      photosMetadata.append(PhotoMetadata(copyright: nil, date: nil, explanation: nil, imageHDURL: placeHolder, imageURL: placeHolder, title: String(i)))
+      photosMetadata.append(
+        PhotoMetadata(
+          copyright: "©mock copyright",
+          date: "2021-08-21",
+          explanation: "Plowing through Earth's atmosphere at 60 kilometers per second, this bright perseid meteor streaks along a starry Milky Way. Captured in dark Portugal skies on August 12, it moves right to left through the frame. Its colorful trail starts near Deneb (alpha Cygni) and ends near Altair (alpha Aquilae), stars of the northern summer triangle. In fact this perseid meteor very briefly outshines both, two of the brightest stars in planet Earth's night. The trail's initial greenish glow is typical of the bright perseid shower meteors. The grains of cosmic sand, swept up dust from periodic comet Swift-Tuttle, are moving fast enough to excite the characteristic green emission of atomic oxygen at altitudes of 100 kilometers or so before vaporizing in an incandescent flash.   Notable APOD Image Submissions: Perseid Meteor Shower 2021",
+          imageHDURL: placeHolder,
+          imageURL: placeHolder,
+          title: "mock title \(i)"
+        )
+      )
     }
     
     self.photosMetadata.accept(photosMetadata)

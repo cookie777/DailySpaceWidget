@@ -9,30 +9,26 @@ import UIKit
 
 class PanZoomImageContainer: UIScrollView {
   
-  var imageView = UIImageView()
+  var imageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.contentMode = .scaleAspectFill
+    imageView.clipsToBounds = false
+    return imageView
+  }()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
+    contentInsetAdjustmentBehavior = .never
     setUpUI()
+    setUpZoom()
   }
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
-    setUpUI()
   }
   
-  private func setUpUI() {
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.contentMode = .scaleAspectFill
-    imageView.clipsToBounds = true
-    addSubview(imageView)
-    self.contentInsetAdjustmentBehavior = .never
-    
-    NSLayoutConstraint.activate([
-      imageView.widthAnchor.constraint(equalTo: widthAnchor),
-      imageView.heightAnchor.constraint(equalTo: heightAnchor),
-      imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-      imageView.centerYAnchor.constraint(equalTo: centerYAnchor)
-    ])
+  private func setUpZoom() {
     // Setup scroll view
     minimumZoomScale = 1
     maximumZoomScale = 4
@@ -41,14 +37,23 @@ class PanZoomImageContainer: UIScrollView {
   
     delegate = self
     
+    
     let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
     doubleTapRecognizer.numberOfTapsRequired = 2
     addGestureRecognizer(doubleTapRecognizer)
   }
   
+  private func setUpUI() {
+    addSubview(imageView)
+    NSLayoutConstraint.activate([
+      imageView.widthAnchor.constraint(greaterThanOrEqualTo: widthAnchor, multiplier: 1),
+      imageView.heightAnchor.constraint(greaterThanOrEqualTo: heightAnchor, multiplier: 1),
+    ])
+  }
+
   @objc private func handleDoubleTap(_ sender: UITapGestureRecognizer) {
     if zoomScale == 1 {
-      setZoomScale(4, animated: true)
+      setZoomScale(2, animated: true)
     } else {
       setZoomScale(1, animated: true)
     }

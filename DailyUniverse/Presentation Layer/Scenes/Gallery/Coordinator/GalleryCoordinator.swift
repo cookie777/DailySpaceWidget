@@ -15,13 +15,22 @@ class GalleryCoordinator: Coordinator {
   }
   
   func start() {
-    let galleryViewController = GalleryViewController()
-    
-    galleryViewController.viewModel = GalleryViewModel(
-      photoMetadataService: PhotosMetadataServiceImplementation()
+    let galleryViewModel = GalleryViewModel(
+      coordinator: self,
+      photoMetadataService: PhotosMetadataFetchServiceImplementation()
     )
+    let galleryViewController = GalleryViewController(viewModel: galleryViewModel)
+    
     navigationController.pushViewController(galleryViewController, animated: true)
   }
   
+  func pushToDetail(photoMetadata: PhotoMetadata) {
+    let coordinator = DetailCoordinator(
+      navigationController: self.navigationController,
+      photoMetadata: photoMetadata
+    )
+    
+    coordinate(to: coordinator)
+  }
   
 }

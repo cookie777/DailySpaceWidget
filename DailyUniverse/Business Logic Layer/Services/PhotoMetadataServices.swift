@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-protocol PhotoMetadataService: AnyObject {
+protocol PhotoMetadataFetchService: AnyObject {
   /// Returns by default past 10 photos metadata
   func getPhotosMetadata(days: Int) -> Observable<([NASAPhotoMetadata]?, Error?)>
   
@@ -16,7 +16,7 @@ protocol PhotoMetadataService: AnyObject {
   func getPhotoMetadata(date: String) -> Observable<(NASAPhotoMetadata?, Error?)>
 }
 //
-class PhotosMetadataServiceImplementation: PhotoMetadataService {
+class PhotosMetadataFetchServiceImplementation: PhotoMetadataFetchService {
   
   let networkClient = NetworkClient(baseUrlString: BasicURLs.NASA)
   

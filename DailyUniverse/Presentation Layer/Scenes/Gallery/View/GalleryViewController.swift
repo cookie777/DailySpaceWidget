@@ -65,17 +65,11 @@ extension GalleryViewController {
     
     setUpUI()
     bindCollectionView()
-    
     bindButtons()
     
-    //    viewModel.getPhotoMetadata()
-    viewModel.getMockMetadata()
-    
-    collectionView.rx.itemHighlighted.bind { i in
-      print(i)
-    }.disposed(by: disposeBag)
+    viewModel.getPhotoMetadata()
+
   }
-  
 
 }
 
@@ -156,6 +150,7 @@ extension GalleryViewController {
       .flatMap({ Observable.just(())})
       .bind(to: viewModel.didDescriptionTapped)
       .disposed(by: disposeBag)
+    
   
   }
 }
@@ -171,7 +166,7 @@ extension GalleryViewController {
     view.addSubview(settingButton)
     
     collectionView.matchParent()
-    collectionView.setCollectionViewLayout(createPortraitCompositionalLayout(), animated: false)
+    collectionView.setCollectionViewLayout(createCompositionalLayout(), animated: false)
     
     NSLayoutConstraint.activate([
       descriptionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constant.UI.rightMargin),
@@ -185,12 +180,12 @@ extension GalleryViewController {
     
   }
   
-  private func createPortraitCompositionalLayout() -> UICollectionViewCompositionalLayout {
+  private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
     
     // Item
     let itemSize = NSCollectionLayoutSize(
       widthDimension: .fractionalWidth(1.0),
-      heightDimension: .absolute(UIScreen.main.bounds.height)
+      heightDimension: .absolute(Constant.UI.longerScreenLength)
     )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     

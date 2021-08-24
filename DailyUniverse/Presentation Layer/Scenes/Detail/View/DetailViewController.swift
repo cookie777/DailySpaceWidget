@@ -96,7 +96,7 @@ class DetailViewController: UIViewController {
   
   private func updateUI() {
     titleLabel.text = viewModel.photoMetadata.title
-    dateLabel.text = viewModel.photoMetadata.date
+    dateLabel.text = DateFormatter.toStringForView(date: viewModel.photoMetadata.date)
     descriptionLabel.text = viewModel.photoMetadata.explanation
     copyrightLabel.text = viewModel.photoMetadata.copyright
   }

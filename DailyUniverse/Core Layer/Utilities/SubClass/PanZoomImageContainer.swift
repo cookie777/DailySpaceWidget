@@ -12,7 +12,7 @@ class PanZoomImageContainer: UIScrollView {
   var imageView: UIImageView = {
     let imageView = UIImageView()
     imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.contentMode = .scaleAspectFill
+    imageView.contentMode = .scaleAspectFit
     imageView.clipsToBounds = false
     return imageView
   }()
@@ -34,9 +34,8 @@ class PanZoomImageContainer: UIScrollView {
     maximumZoomScale = 4
     showsHorizontalScrollIndicator = false
     showsVerticalScrollIndicator = false
-  
-    delegate = self
     
+    delegate = self
     
     let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
     doubleTapRecognizer.numberOfTapsRequired = 2
@@ -45,12 +44,16 @@ class PanZoomImageContainer: UIScrollView {
   
   private func setUpUI() {
     addSubview(imageView)
+    
     NSLayoutConstraint.activate([
-      imageView.widthAnchor.constraint(greaterThanOrEqualTo: widthAnchor, multiplier: 1),
-      imageView.heightAnchor.constraint(greaterThanOrEqualTo: heightAnchor, multiplier: 1),
+      imageView.widthAnchor.constraint(equalTo: widthAnchor),
+      imageView.heightAnchor.constraint(equalTo: heightAnchor),
+      imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+      imageView.centerYAnchor.constraint(equalTo: centerYAnchor)
     ])
+    
   }
-
+  
   @objc private func handleDoubleTap(_ sender: UITapGestureRecognizer) {
     if zoomScale == 1 {
       setZoomScale(2, animated: true)

@@ -12,6 +12,8 @@
 		4828FFE126D1CE3100D8EAE3 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE026D1CE3100D8EAE3 /* DetailViewModel.swift */; };
 		4828FFE326D1CE4300D8EAE3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE226D1CE4300D8EAE3 /* DetailViewController.swift */; };
 		4828FFE626D3694B00D8EAE3 /* PhotoMetadataStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE526D3694B00D8EAE3 /* PhotoMetadataStorageService.swift */; };
+		4880199426D3708D008ADB2E /* ManagedPhotoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4880199326D3708D008ADB2E /* ManagedPhotoMetadata.swift */; };
+		4880199626D43C39008ADB2E /* DateFormatter+toString+toDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4880199526D43C39008ADB2E /* DateFormatter+toString+toDate.swift */; };
 		48B8768E26CB4E0500EE0B21 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8768D26CB4E0500EE0B21 /* NetworkClient.swift */; };
 		48B8769126CB4E3F00EE0B21 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769026CB4E3F00EE0B21 /* NetworkError.swift */; };
 		48B8769426CB75BC00EE0B21 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769326CB75BC00EE0B21 /* APIKeys.swift */; };
@@ -46,6 +48,8 @@
 		4828FFE026D1CE3100D8EAE3 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		4828FFE226D1CE4300D8EAE3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4828FFE526D3694B00D8EAE3 /* PhotoMetadataStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMetadataStorageService.swift; sourceTree = "<group>"; };
+		4880199326D3708D008ADB2E /* ManagedPhotoMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPhotoMetadata.swift; sourceTree = "<group>"; };
+		4880199526D43C39008ADB2E /* DateFormatter+toString+toDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+toString+toDate.swift"; sourceTree = "<group>"; };
 		48B8768D26CB4E0500EE0B21 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		48B8769026CB4E3F00EE0B21 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		48B8769326CB75BC00EE0B21 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 				48B8769A26CC63BC00EE0B21 /* Date+currentDay.swift */,
 				48B876A726CC6C7500EE0B21 /* UIView+ConstraintLayout.swift */,
 				48B876E226D0B29300EE0B21 /* UIImage+createSFIcon.swift */,
+				4880199526D43C39008ADB2E /* DateFormatter+toString+toDate.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 			children = (
 				48E7851226CB27CA00D209EF /* NASAPhotoMetadata.swift */,
 				48B876A126CC6A2400EE0B21 /* PhotoMetadata.swift */,
+				4880199326D3708D008ADB2E /* ManagedPhotoMetadata.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -493,7 +499,9 @@
 				48B8769426CB75BC00EE0B21 /* APIKeys.swift in Sources */,
 				48B8768E26CB4E0500EE0B21 /* NetworkClient.swift in Sources */,
 				4828FFDF26D1CE2600D8EAE3 /* DetailCoordinator.swift in Sources */,
+				4880199626D43C39008ADB2E /* DateFormatter+toString+toDate.swift in Sources */,
 				4828FFE326D1CE4300D8EAE3 /* DetailViewController.swift in Sources */,
+				4880199426D3708D008ADB2E /* ManagedPhotoMetadata.swift in Sources */,
 				4828FFE126D1CE3100D8EAE3 /* DetailViewModel.swift in Sources */,
 				48E7850526CB20A600D209EF /* AppCoordinator.swift in Sources */,
 				48E784E826CB1B0300D209EF /* AppDelegate.swift in Sources */,

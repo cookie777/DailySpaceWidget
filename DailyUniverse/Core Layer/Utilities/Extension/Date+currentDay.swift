@@ -10,16 +10,13 @@ import Foundation
 extension Date {
   
   static func getPastDate(days: Int = 0) -> String {
-    
-    let df = DateFormatter()
-    df.dateFormat = "yyyy-MM-dd"
-    
     if let pastDate = Calendar.current.date(byAdding: .day, value: -days, to: Date()) {
-      return df.string(from:  pastDate)
+      return DateFormatter.toStringForAPI(date: pastDate)!
     } else {
-      return df.string(from: Date())
+      return DateFormatter.toStringForAPI(date: Date())!
     }
-    
   }
   
 }
+
+

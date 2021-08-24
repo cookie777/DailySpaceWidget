@@ -14,6 +14,14 @@ struct Constant {
     static let leftMargin: CGFloat = 24
     static let rightMargin: CGFloat = 24
     static let bottomMargin: CGFloat = 24
+    
+    static var longerScreenLength: CGFloat {
+      if UIDevice.current.orientation.isPortrait {
+        return UIScreen.main.bounds.height
+      } else {
+        return UIScreen.main.bounds.width
+      }
+    }
   }
   
 }

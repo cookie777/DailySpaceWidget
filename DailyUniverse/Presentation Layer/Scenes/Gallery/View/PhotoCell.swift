@@ -69,7 +69,7 @@ extension PhotoCell {
     self.contentView.addSubview(copyrightLabel)
     self.contentView.addSubview(titleStackView)
     
-    self.contentView.backgroundColor = .clear
+    self.contentView.backgroundColor = .black
     self.contentView.layer.borderWidth = 4.0
     self.contentView.layer.borderColor = UIColor.black.cgColor
     
@@ -85,7 +85,7 @@ extension PhotoCell {
   
   func updateUI(item: PhotoMetadata) {
     titleLabel.text = item.title
-    dateLabel.text = item.date
+    dateLabel.text = DateFormatter.toStringForView(date: item.date)
     copyrightLabel.text = item.copyright
   }
 }

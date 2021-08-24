@@ -9,7 +9,7 @@ import Foundation
 
 struct PhotoMetadata: Hashable {
   let copyright: String?
-  let date: String?
+  let date: Date?
   let explanation: String?
   let imageHDURL: URL?
   let imageURL: URL?

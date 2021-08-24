@@ -9,4 +9,5 @@ target 'DailyUniverse' do
 	pod 'RxSwift', '6.2.0'
 	pod 'RxCocoa', '6.2.0'
 	pod 'Kingfisher', '~> 6.0'
+  pod 'RealmSwift', '~>10'
 end

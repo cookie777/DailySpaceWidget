@@ -21,14 +21,19 @@ class GalleryViewModel {
   var photosMetadata = BehaviorRelay<[PhotoMetadata]>(value: [])
   
   let coordinator: GalleryCoordinator!
-  private var photoMetadataService: PhotoMetadataFetchService!
+  private var photoMetadataFetchService: PhotoMetadataFetchService!
+  private var photoMetadataStorageService: PhotoMetadataStorageService!
+  
+  var contentMode:UIView.ContentMode = .scaleAspectFit
   
   init(
     coordinator: GalleryCoordinator,
+    photoMetadataStorageService: PhotoMetadataStorageService,
     photoMetadataService: PhotoMetadataFetchService
   ) {
     self.coordinator = coordinator
-    self.photoMetadataService = photoMetadataService
+    self.photoMetadataStorageService = photoMetadataStorageService
+    self.photoMetadataFetchService = photoMetadataService
     
     bindOnDidTappedOnce()
     bindOnDidDescriptionTapped()
@@ -60,7 +65,16 @@ class GalleryViewModel {
   // MARK: - Service Methods
   func getPhotoMetadata() {
     
-    photoMetadataService.getPhotosMetadata(days: 10)
+    // if same day, restore from catch
+    if photoMetadataStorageService.shouldSkipFetching() {
+      let items = photoMetadataStorageService.restorePhotoMetadata()
+      photosMetadata.accept(items)
+      photoMetadataStorageService.storeLatestUpdateDate()
+      debugPrint("restore items from realm")
+      return
+    }
+    
+    photoMetadataFetchService.getPhotosMetadata(days: 10)
       // eliminate error
       .filter { $0.0 != nil && $0.1 == nil }
       .compactMap {  photos, _  in
@@ -74,14 +88,14 @@ class GalleryViewModel {
             }
         })
       }
-      .map { photos in
+      .map { photos -> [PhotoMetadata] in
         return photos.map { photo in
           let hdURL = photo.hdURL == nil ? nil : URL(string: photo.hdURL!)
           let url = photo.url == nil ? nil : URL(string: photo.url!)
           
           return PhotoMetadata(
             copyright: photo.copyright,
-            date: photo.date,
+            date: DateFormatter.toDate(string: photo.date),
             explanation: photo.explanation,
             imageHDURL: hdURL,
             imageURL: url,
@@ -89,6 +103,12 @@ class GalleryViewModel {
           )
         }
       }
+      .do(onNext: { [weak self] items in
+        if let res = self?.photoMetadataStorageService.storePhotoMetadata(photosMetadata: items), res {
+          debugPrint("succeeded storing fetch items")
+        }
+        self?.photoMetadataStorageService.storeLatestUpdateDate()
+      })
       .bind(to: photosMetadata)
       .disposed(by: disposeBag)
     
@@ -98,11 +118,12 @@ class GalleryViewModel {
     var photosMetadata: [PhotoMetadata] = []
     
     let placeHolder = URL(string: "https://assets.newatlas.com/dims4/default/b89cd58/2147483647/strip/true/crop/925x617+0+232/resize/1200x800!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fchandra-nasa-space-telescope-anniversary-4.jpg")
+    
     for i in 0...10 {
       photosMetadata.append(
         PhotoMetadata(
           copyright: "©mock copyright",
-          date: "2021-08-21",
+          date: Date(),
           explanation: "Plowing through Earth's atmosphere at 60 kilometers per second, this bright perseid meteor streaks along a starry Milky Way. Captured in dark Portugal skies on August 12, it moves right to left through the frame. Its colorful trail starts near Deneb (alpha Cygni) and ends near Altair (alpha Aquilae), stars of the northern summer triangle. In fact this perseid meteor very briefly outshines both, two of the brightest stars in planet Earth's night. The trail's initial greenish glow is typical of the bright perseid shower meteors. The grains of cosmic sand, swept up dust from periodic comet Swift-Tuttle, are moving fast enough to excite the characteristic green emission of atomic oxygen at altitudes of 100 kilometers or so before vaporizing in an incandescent flash.   Notable APOD Image Submissions: Perseid Meteor Shower 2021",
           imageHDURL: placeHolder,
           imageURL: placeHolder,

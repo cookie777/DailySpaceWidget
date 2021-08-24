@@ -17,6 +17,7 @@ class GalleryCoordinator: Coordinator {
   func start() {
     let galleryViewModel = GalleryViewModel(
       coordinator: self,
+      photoMetadataStorageService: PhotosMetadataStorageServiceImplementation(),
       photoMetadataService: PhotosMetadataFetchServiceImplementation()
     )
     let galleryViewController = GalleryViewController(viewModel: galleryViewModel)

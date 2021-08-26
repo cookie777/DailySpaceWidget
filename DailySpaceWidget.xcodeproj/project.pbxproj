@@ -39,9 +39,11 @@
 		48E7851026CB264000D209EF /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7850F26CB264000D209EF /* GalleryViewModel.swift */; };
 		48E7851326CB27CA00D209EF /* NASAPhotoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851226CB27CA00D209EF /* NASAPhotoMetadata.swift */; };
 		48E7851626CB2B4500D209EF /* PhotoMetadataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851526CB2B4500D209EF /* PhotoMetadataServices.swift */; };
+		766E94E67CD48E253019A682 /* Pods_DailySpaceWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF3E776308FD41DCDBFAA68 /* Pods_DailySpaceWidget.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		182D922C3EA5D42BA61A91E4 /* Pods-DailySpaceWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailySpaceWidget.release.xcconfig"; path = "Target Support Files/Pods-DailySpaceWidget/Pods-DailySpaceWidget.release.xcconfig"; sourceTree = "<group>"; };
 		4828FFDE26D1CE2600D8EAE3 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		4828FFE026D1CE3100D8EAE3 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		4828FFE226D1CE4300D8EAE3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,8 @@
 		48E7850F26CB264000D209EF /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		48E7851226CB27CA00D209EF /* NASAPhotoMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoMetadata.swift; sourceTree = "<group>"; };
 		48E7851526CB2B4500D209EF /* PhotoMetadataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMetadataServices.swift; sourceTree = "<group>"; };
+		4AF3E776308FD41DCDBFAA68 /* Pods_DailySpaceWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailySpaceWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBCA79CEBF398E905258B1CF /* Pods-DailySpaceWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailySpaceWidget.debug.xcconfig"; path = "Target Support Files/Pods-DailySpaceWidget/Pods-DailySpaceWidget.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				766E94E67CD48E253019A682 /* Pods_DailySpaceWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +210,7 @@
 				48E784E626CB1B0300D209EF /* DailySpaceWidget */,
 				48E784E526CB1B0300D209EF /* Products */,
 				85FEC179FD3598FB5CB0D798 /* Pods */,
+				5868E61FDE8668008B28EC6A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -354,9 +360,19 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		5868E61FDE8668008B28EC6A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4AF3E776308FD41DCDBFAA68 /* Pods_DailySpaceWidget.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		85FEC179FD3598FB5CB0D798 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				CBCA79CEBF398E905258B1CF /* Pods-DailySpaceWidget.debug.xcconfig */,
+				182D922C3EA5D42BA61A91E4 /* Pods-DailySpaceWidget.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -368,9 +384,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48E784F826CB1B0500D209EF /* Build configuration list for PBXNativeTarget "DailySpaceWidget" */;
 			buildPhases = (
+				BB44E5E0E4A2D1A399735478 /* [CP] Check Pods Manifest.lock */,
 				48E784E026CB1B0300D209EF /* Sources */,
 				48E784E126CB1B0300D209EF /* Frameworks */,
 				48E784E226CB1B0300D209EF /* Resources */,
+				2F07DF9F7DFC3FAF3A212FBF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -424,6 +442,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F07DF9F7DFC3FAF3A212FBF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DailySpaceWidget/Pods-DailySpaceWidget-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DailySpaceWidget/Pods-DailySpaceWidget-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DailySpaceWidget/Pods-DailySpaceWidget-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB44E5E0E4A2D1A399735478 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DailySpaceWidget-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		48E784E026CB1B0300D209EF /* Sources */ = {
@@ -595,12 +655,13 @@
 		};
 		48E784F926CB1B0500D209EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBCA79CEBF398E905258B1CF /* Pods-DailySpaceWidget.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2PTMH7A8WP;
-				INFOPLIST_FILE = "DailyUniverse/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "DailySpaceWidget/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -614,12 +675,13 @@
 		};
 		48E784FA26CB1B0500D209EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 182D922C3EA5D42BA61A91E4 /* Pods-DailySpaceWidget.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2PTMH7A8WP;
-				INFOPLIST_FILE = "DailyUniverse/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "DailySpaceWidget/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

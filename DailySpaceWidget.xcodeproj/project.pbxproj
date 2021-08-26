@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B33B7EB36FA2F1DDC38B13D /* Pods_DailyUniverse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E268A9DACADC0A216DDB85 /* Pods_DailyUniverse.framework */; };
 		4828FFDF26D1CE2600D8EAE3 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFDE26D1CE2600D8EAE3 /* DetailCoordinator.swift */; };
 		4828FFE126D1CE3100D8EAE3 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE026D1CE3100D8EAE3 /* DetailViewModel.swift */; };
 		4828FFE326D1CE4300D8EAE3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE226D1CE4300D8EAE3 /* DetailViewController.swift */; };
@@ -43,7 +42,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C18CC1EAAD8BBE1591FF703 /* Pods-DailyUniverse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyUniverse.debug.xcconfig"; path = "Target Support Files/Pods-DailyUniverse/Pods-DailyUniverse.debug.xcconfig"; sourceTree = "<group>"; };
 		4828FFDE26D1CE2600D8EAE3 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		4828FFE026D1CE3100D8EAE3 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		4828FFE226D1CE4300D8EAE3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -65,7 +63,7 @@
 		48B876D626CF45C500EE0B21 /* PanZoomImageContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanZoomImageContainer.swift; sourceTree = "<group>"; };
 		48B876E226D0B29300EE0B21 /* UIImage+createSFIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+createSFIcon.swift"; sourceTree = "<group>"; };
 		48B876E526D0B4F600EE0B21 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		48E784E426CB1B0300D209EF /* DailyUniverse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyUniverse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		48E784E426CB1B0300D209EF /* DailySpaceWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailySpaceWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E784E726CB1B0300D209EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48E784E926CB1B0300D209EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		48E784F026CB1B0500D209EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,8 +76,6 @@
 		48E7850F26CB264000D209EF /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		48E7851226CB27CA00D209EF /* NASAPhotoMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoMetadata.swift; sourceTree = "<group>"; };
 		48E7851526CB2B4500D209EF /* PhotoMetadataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMetadataServices.swift; sourceTree = "<group>"; };
-		8E4B43953C826A54A8929352 /* Pods-DailyUniverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyUniverse.release.xcconfig"; path = "Target Support Files/Pods-DailyUniverse/Pods-DailyUniverse.release.xcconfig"; sourceTree = "<group>"; };
-		93E268A9DACADC0A216DDB85 /* Pods_DailyUniverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyUniverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +83,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B33B7EB36FA2F1DDC38B13D /* Pods_DailyUniverse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,22 +202,21 @@
 		48E784DB26CB1B0300D209EF = {
 			isa = PBXGroup;
 			children = (
-				48E784E626CB1B0300D209EF /* DailyUniverse */,
+				48E784E626CB1B0300D209EF /* DailySpaceWidget */,
 				48E784E526CB1B0300D209EF /* Products */,
 				85FEC179FD3598FB5CB0D798 /* Pods */,
-				EAD6981E20EE58BE4B4C1A6E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		48E784E526CB1B0300D209EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48E784E426CB1B0300D209EF /* DailyUniverse.app */,
+				48E784E426CB1B0300D209EF /* DailySpaceWidget.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		48E784E626CB1B0300D209EF /* DailyUniverse */ = {
+		48E784E626CB1B0300D209EF /* DailySpaceWidget */ = {
 			isa = PBXGroup;
 			children = (
 				48E784FB26CB1D0800D209EF /* Application Layer */,
@@ -231,7 +225,7 @@
 				48E784FE26CB1D3C00D209EF /* Core Layer */,
 				48E784FF26CB1D4C00D209EF /* Supporting Files */,
 			);
-			path = DailyUniverse;
+			path = DailySpaceWidget;
 			sourceTree = "<group>";
 		};
 		48E784FB26CB1D0800D209EF /* Application Layer */ = {
@@ -363,40 +357,28 @@
 		85FEC179FD3598FB5CB0D798 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0C18CC1EAAD8BBE1591FF703 /* Pods-DailyUniverse.debug.xcconfig */,
-				8E4B43953C826A54A8929352 /* Pods-DailyUniverse.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		EAD6981E20EE58BE4B4C1A6E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				93E268A9DACADC0A216DDB85 /* Pods_DailyUniverse.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		48E784E326CB1B0300D209EF /* DailyUniverse */ = {
+		48E784E326CB1B0300D209EF /* DailySpaceWidget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 48E784F826CB1B0500D209EF /* Build configuration list for PBXNativeTarget "DailyUniverse" */;
+			buildConfigurationList = 48E784F826CB1B0500D209EF /* Build configuration list for PBXNativeTarget "DailySpaceWidget" */;
 			buildPhases = (
-				64204EBF7E9C3CE9A03AA74A /* [CP] Check Pods Manifest.lock */,
 				48E784E026CB1B0300D209EF /* Sources */,
 				48E784E126CB1B0300D209EF /* Frameworks */,
 				48E784E226CB1B0300D209EF /* Resources */,
-				2771856BB88D159633E4D3DD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = DailyUniverse;
+			name = DailySpaceWidget;
 			productName = DailyUniverse;
-			productReference = 48E784E426CB1B0300D209EF /* DailyUniverse.app */;
+			productReference = 48E784E426CB1B0300D209EF /* DailySpaceWidget.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -413,7 +395,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 48E784DF26CB1B0300D209EF /* Build configuration list for PBXProject "DailyUniverse" */;
+			buildConfigurationList = 48E784DF26CB1B0300D209EF /* Build configuration list for PBXProject "DailySpaceWidget" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -426,7 +408,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				48E784E326CB1B0300D209EF /* DailyUniverse */,
+				48E784E326CB1B0300D209EF /* DailySpaceWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -442,48 +424,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		2771856BB88D159633E4D3DD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DailyUniverse/Pods-DailyUniverse-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DailyUniverse/Pods-DailyUniverse-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DailyUniverse/Pods-DailyUniverse-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		64204EBF7E9C3CE9A03AA74A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DailyUniverse-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		48E784E026CB1B0300D209EF /* Sources */ = {
@@ -655,7 +595,6 @@
 		};
 		48E784F926CB1B0500D209EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C18CC1EAAD8BBE1591FF703 /* Pods-DailyUniverse.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -666,7 +605,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tak8.DailyUniverse;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tak8.DailySpaceWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -675,7 +614,6 @@
 		};
 		48E784FA26CB1B0500D209EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E4B43953C826A54A8929352 /* Pods-DailyUniverse.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -686,7 +624,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tak8.DailyUniverse;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tak8.DailySpaceWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -696,7 +634,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		48E784DF26CB1B0300D209EF /* Build configuration list for PBXProject "DailyUniverse" */ = {
+		48E784DF26CB1B0300D209EF /* Build configuration list for PBXProject "DailySpaceWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				48E784F626CB1B0500D209EF /* Debug */,
@@ -705,7 +643,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		48E784F826CB1B0500D209EF /* Build configuration list for PBXNativeTarget "DailyUniverse" */ = {
+		48E784F826CB1B0500D209EF /* Build configuration list for PBXNativeTarget "DailySpaceWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				48E784F926CB1B0500D209EF /* Debug */,

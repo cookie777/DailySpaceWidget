@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 struct Constant {
   
@@ -24,4 +25,8 @@ struct Constant {
     }
   }
   
+  struct Config {
+    static let groupIdentifier: String = "group.com.tak8.DailySpaceWidget"
+  }
+
 }

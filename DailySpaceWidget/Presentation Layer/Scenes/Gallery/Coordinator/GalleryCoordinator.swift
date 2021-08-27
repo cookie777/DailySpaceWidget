@@ -15,10 +15,13 @@ class GalleryCoordinator: Coordinator {
   }
   
   func start() {
+    let photoStorageService = PhotoStorageServiceImplementation()
+    let photoFetchService = PhotosFetchServiceImplementation()
+    
     let galleryViewModel = GalleryViewModel(
       coordinator: self,
-      photoMetadataStorageService: PhotosMetadataStorageServiceImplementation(),
-      photoMetadataService: PhotosMetadataFetchServiceImplementation()
+      photoStorageService: photoStorageService,
+      photoFetchService: photoFetchService
     )
     let galleryViewController = GalleryViewController(viewModel: galleryViewModel)
     

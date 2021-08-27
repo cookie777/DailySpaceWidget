@@ -8,10 +8,9 @@
 import Foundation
 import RxSwift
 import RealmSwift
+import Kingfisher
 
-protocol PhotoMetadataStorageService: AnyObject {
-  
-  var realm : Realm { get }
+protocol PhotoStorageService: AnyObject {
   
   func shouldSkipFetching() -> Bool
   
@@ -20,32 +19,21 @@ protocol PhotoMetadataStorageService: AnyObject {
   func restorePhotoMetadata() -> [PhotoMetadata]
   
   func storePhotoMetadata(photosMetadata: [PhotoMetadata]) -> Bool
+  
+  func restoreLatestPhoto(completion: @escaping(UIImage?) -> ())
 }
 
-
-class PhotosMetadataStorageServiceImplementation: PhotoMetadataStorageService {
-  
-  var realm : Realm {
-    do {
-      let realm = try Realm()
-      return realm
-    } catch let error as NSError {
-      print("couldn't open realm")
-      print(error.localizedDescription)
-      fatalError()
-    }
-  }
+class PhotoStorageServiceImplementation: PhotoStorageService {
   
   func storeLatestUpdateDate() {
-    let defaults = UserDefaults.standard
-    defaults.setValue(Date(), forKey: "LatestUpdateDate")
+    UserDefaultManager.save(key: UserDefaultManager.lastUpdateKey, item: Date())
   }
   
   func shouldSkipFetching() -> Bool {
-    let defaults = UserDefaults.standard
-    guard let latestUpdateDate = defaults.object(forKey: "LatestUpdateDate") as? Date else { return false }
-    
+    guard let latestUpdateDate: Date = UserDefaultManager.read(key: UserDefaultManager.lastUpdateKey) else { return false }
     debugPrint(latestUpdateDate)
+    
+    // extract only day and compare
     let latestUpdateDay = Calendar.current.component(.day, from: latestUpdateDate)
     let currentDay = Calendar.current.component(.day, from: Date())
     
@@ -53,7 +41,7 @@ class PhotosMetadataStorageServiceImplementation: PhotoMetadataStorageService {
   }
   
   func restorePhotoMetadata() -> [PhotoMetadata] {
-    let managedPhotosMetadata = realm.objects(ManagedPhotoMetadata.self)
+    let managedPhotosMetadata = RealmManager.read(ofType: ManagedPhotoMetadata.self)
     
     return managedPhotosMetadata.map { managed in
       
@@ -85,19 +73,27 @@ class PhotosMetadataStorageServiceImplementation: PhotoMetadataStorageService {
       )
     }
     
-    do {
-      try realm.write {
-        realm.add(managedPhotosMetadata)
-      }
-    } catch let error {
-      print("couldn't save to realm")
-      print(error.localizedDescription)
-      return false
-    }
-    
-    return true
+    return RealmManager.save(items: managedPhotosMetadata)
   }
   
   
+  func restoreLatestPhoto(completion: @escaping(UIImage?) -> ()) {
+    let items = RealmManager.read(ofType: ManagedPhotoMetadata.self)
+    let imageURL = items.first?.imageHDURL
+  
+    let cache = KFManager.kfImageCache
+    cache.retrieveImage(forKey: imageURL! ) { result in
+        switch result {
+        case .success(let value):
+          print(value)
+          completion(value.image)
+          
+        case .failure(let error):
+            print(error)
+          completion(nil)
+        }
+    }
+  }
+    
   
 }

@@ -9,8 +9,15 @@ import WidgetKit
 import SwiftUI
 import Intents
 import Kingfisher
+import RxSwift
 
 struct Provider: IntentTimelineProvider {
+  
+  let viewModel = WidgetViewModel(
+    photoStorageService: PhotoStorageServiceImplementation()
+  )
+  let disposeBag = DisposeBag()
+  
   func placeholder(in context: Context) -> PhotoMetadataEntry {
     
     return PhotoMetadataEntry(date: Date(), data: PhotoMetadata(copyright: nil, date: nil, explanation: nil, imageHDURL: nil, imageURL: nil, title: nil), configuration: ConfigurationIntent())
@@ -23,30 +30,41 @@ struct Provider: IntentTimelineProvider {
   }
   
   func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-    print("bbbb")
     
-    let re = PhotosMetadataStorageServiceImplementation()
-    print(re.restorePhotoMetadata())
     
     let midnight = Calendar.current.startOfDay(for: Date())
     let nextMidnight = Calendar.current.date(byAdding: .day, value: 1, to: midnight)!
     
     var entries: [PhotoMetadataEntry] = []
-    entries.append(PhotoMetadataEntry(date: Date(), data: PhotoMetadata(copyright: nil, date: nil, explanation: nil, imageHDURL: nil, imageURL: nil, title: nil), configuration: configuration))
     
-    let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
-    completion(timeline)
+    viewModel.getImage().bind { image in
+      let entry = PhotoMetadataEntry(
+        date: Date(),
+        data: PhotoMetadata(
+          copyright: nil,
+          date: nil,
+          explanation: nil,
+          imageHDURL: nil,
+          imageURL: nil,
+          title: nil
+        ),
+        image: Image(uiImage: image ?? UIImage()),
+        configuration: configuration
+      )
+      entries.append(entry)
+      let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
+      completion(timeline)
+      
+    }.disposed(by: disposeBag)
+
   }
 }
 
-struct SimpleEntry: TimelineEntry {
-  let date: Date
-  let configuration: ConfigurationIntent
-}
 
 struct PhotoMetadataEntry: TimelineEntry {
   var date: Date
   let data: PhotoMetadata
+  var image: Image?
   let configuration: ConfigurationIntent
 }
 
@@ -54,7 +72,9 @@ struct MainWidgetEntryView : View {
   var entry: Provider.Entry
   
   var body: some View {
-    Text(entry.date, style: .time)
+    entry.image!
+      .resizable()
+      .scaledToFill()
   }
 }
 

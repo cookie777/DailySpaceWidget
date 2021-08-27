@@ -21,19 +21,19 @@ class GalleryViewModel {
   var photosMetadata = BehaviorRelay<[PhotoMetadata]>(value: [])
   
   let coordinator: GalleryCoordinator!
-  private var photoMetadataFetchService: PhotoMetadataFetchService!
-  private var photoMetadataStorageService: PhotoMetadataStorageService!
+  private var photoFetchService: PhotoFetchService!
+  private var photoStorageService: PhotoStorageService!
   
   var contentMode:UIView.ContentMode = .scaleAspectFit
   
   init(
     coordinator: GalleryCoordinator,
-    photoMetadataStorageService: PhotoMetadataStorageService,
-    photoMetadataService: PhotoMetadataFetchService
+    photoStorageService: PhotoStorageService,
+    photoFetchService: PhotoFetchService
   ) {
     self.coordinator = coordinator
-    self.photoMetadataStorageService = photoMetadataStorageService
-    self.photoMetadataFetchService = photoMetadataService
+    self.photoStorageService = photoStorageService
+    self.photoFetchService = photoFetchService
     
     bindOnDidTappedOnce()
     bindOnDidDescriptionTapped()
@@ -58,6 +58,10 @@ class GalleryViewModel {
         // coordinate to next
         let photoMetaData = self.photosMetadata.value[self.currentIndex]
         self.coordinator.pushToDetail(photoMetadata: photoMetaData)
+        
+        self.photoStorageService.restoreLatestPhoto { image in
+          print(image)
+        }
       }.disposed(by: disposeBag)
   }
   
@@ -66,15 +70,15 @@ class GalleryViewModel {
   func getPhotoMetadata() {
     
     // if same day, restore from catch
-    if photoMetadataStorageService.shouldSkipFetching() {
-      let items = photoMetadataStorageService.restorePhotoMetadata()
+    if photoStorageService.shouldSkipFetching() {
+      let items = photoStorageService.restorePhotoMetadata()
       photosMetadata.accept(items)
-      photoMetadataStorageService.storeLatestUpdateDate()
+      photoStorageService.storeLatestUpdateDate()
       debugPrint("restore items from realm")
       return
     }
     
-    photoMetadataFetchService.getPhotosMetadata(days: 10)
+    photoFetchService.getPhotosMetadata(days: 10)
       // eliminate error
       .filter { $0.0 != nil && $0.1 == nil }
       .compactMap {  photos, _  in
@@ -104,10 +108,10 @@ class GalleryViewModel {
         }
       }
       .do(onNext: { [weak self] items in
-        if let res = self?.photoMetadataStorageService.storePhotoMetadata(photosMetadata: items), res {
+        if let res = self?.photoStorageService.storePhotoMetadata(photosMetadata: items), res {
           debugPrint("succeeded storing fetch items")
         }
-        self?.photoMetadataStorageService.storeLatestUpdateDate()
+        self?.photoStorageService.storeLatestUpdateDate()
       })
       .bind(to: photosMetadata)
       .disposed(by: disposeBag)

@@ -8,7 +8,7 @@
 import Foundation
 
 struct APIKeys {
-  static let NASA = "DEMO_KEY"
+  static let NASA = ""
 }
 
 

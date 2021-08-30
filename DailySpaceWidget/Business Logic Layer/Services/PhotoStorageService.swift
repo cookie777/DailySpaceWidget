@@ -12,7 +12,7 @@ import Kingfisher
 
 protocol PhotoStorageService: AnyObject {
   
-  func shouldSkipFetching() -> Bool
+  func hasLatestMetadata() -> Bool
   
   func storeLatestUpdateDate()
   
@@ -20,18 +20,20 @@ protocol PhotoStorageService: AnyObject {
   
   func storePhotoMetadata(photosMetadata: [PhotoMetadata]) -> Bool
   
-  func restoreLatestPhoto(completion: @escaping(UIImage?) -> ())
+  func restoreLatestMetaData() -> ManagedPhotoMetadata?
+
 }
 
 class PhotoStorageServiceImplementation: PhotoStorageService {
+
   
   func storeLatestUpdateDate() {
     UserDefaultManager.save(key: UserDefaultManager.lastUpdateKey, item: Date())
   }
   
-  func shouldSkipFetching() -> Bool {
+  func hasLatestMetadata() -> Bool {
     guard let latestUpdateDate: Date = UserDefaultManager.read(key: UserDefaultManager.lastUpdateKey) else { return false }
-    debugPrint(latestUpdateDate)
+    debugPrint("Last update: \(latestUpdateDate)")
     
     // extract only day and compare
     let latestUpdateDay = Calendar.current.component(.day, from: latestUpdateDate)
@@ -77,23 +79,9 @@ class PhotoStorageServiceImplementation: PhotoStorageService {
   }
   
   
-  func restoreLatestPhoto(completion: @escaping(UIImage?) -> ()) {
+  func restoreLatestMetaData() -> ManagedPhotoMetadata? {
     let items = RealmManager.read(ofType: ManagedPhotoMetadata.self)
-    let imageURL = items.first?.imageHDURL
-  
-    let cache = KFManager.kfImageCache
-    cache.retrieveImage(forKey: imageURL! ) { result in
-        switch result {
-        case .success(let value):
-          print(value)
-          completion(value.image)
-          
-        case .failure(let error):
-            print(error)
-          completion(nil)
-        }
-    }
+    return items.first
   }
-    
   
 }

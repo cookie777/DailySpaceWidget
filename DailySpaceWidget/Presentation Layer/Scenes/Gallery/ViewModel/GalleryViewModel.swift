@@ -59,9 +59,6 @@ class GalleryViewModel {
         let photoMetaData = self.photosMetadata.value[self.currentIndex]
         self.coordinator.pushToDetail(photoMetadata: photoMetaData)
         
-        self.photoStorageService.restoreLatestPhoto { image in
-          print(image)
-        }
       }.disposed(by: disposeBag)
   }
   
@@ -70,7 +67,7 @@ class GalleryViewModel {
   func getPhotoMetadata() {
     
     // if same day, restore from catch
-    if photoStorageService.shouldSkipFetching() {
+    if photoStorageService.hasLatestMetadata() {
       let items = photoStorageService.restorePhotoMetadata()
       photosMetadata.accept(items)
       photoStorageService.storeLatestUpdateDate()
@@ -78,7 +75,7 @@ class GalleryViewModel {
       return
     }
     
-    photoFetchService.getPhotosMetadata(days: 10)
+    photoFetchService.getPhotosMetadata(days: Constant.Config.numOfDaysToKeep + 5)
       // eliminate error
       .filter { $0.0 != nil && $0.1 == nil }
       .compactMap {  photos, _  in
@@ -87,7 +84,7 @@ class GalleryViewModel {
           .filter({$0.mediaType == "image"})
           .reversed()
           .reduce(into: [NASAPhotoMetadata](), { result, metadata in
-            if result.count < 3 {
+            if result.count < Constant.Config.numOfDaysToKeep {
               result.append(metadata)
             }
         })

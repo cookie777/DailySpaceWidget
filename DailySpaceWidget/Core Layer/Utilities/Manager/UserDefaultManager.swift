@@ -24,6 +24,7 @@ struct UserDefaultManager: UserDefaultManagerProtocol {
   static func save<T>(key: String, item: T) -> Bool {
     guard let defaults = defaults else { return false }
     defaults.set(item, forKey: key)
+    defaults.synchronize()
     return true
   }
   

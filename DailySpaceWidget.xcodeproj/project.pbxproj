@@ -48,6 +48,15 @@
 		48E584D126D88E2300FF9FA8 /* KFManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CF26D88D9500FF9FA8 /* KFManager.swift */; };
 		48E584D326D88E4B00FF9FA8 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584D226D88E4B00FF9FA8 /* UserDefaultManager.swift */; };
 		48E584D426D88F8A00FF9FA8 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584D226D88E4B00FF9FA8 /* UserDefaultManager.swift */; };
+		48E584D626D8B0B700FF9FA8 /* PhotoFetchServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851526CB2B4500D209EF /* PhotoFetchServices.swift */; };
+		48E584D726D8B0FC00FF9FA8 /* NASAPhotoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851226CB27CA00D209EF /* NASAPhotoMetadata.swift */; };
+		48E584D826D8B10800FF9FA8 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8768D26CB4E0500EE0B21 /* NetworkClient.swift */; };
+		48E584D926D8B1AC00FF9FA8 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769326CB75BC00EE0B21 /* APIKeys.swift */; };
+		48E584DA26D8B1B200FF9FA8 /* BaseURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769526CB75D000EE0B21 /* BaseURLs.swift */; };
+		48E584DB26D8B1BD00FF9FA8 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769726CB75EA00EE0B21 /* EndPoints.swift */; };
+		48E584DC26D8B1CB00FF9FA8 /* Date+currentDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769A26CC63BC00EE0B21 /* Date+currentDay.swift */; };
+		48E584DD26D8B1D400FF9FA8 /* DateFormatter+toString+toDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4880199526D43C39008ADB2E /* DateFormatter+toString+toDate.swift */; };
+		48E584DE26D8B1DD00FF9FA8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769026CB4E3F00EE0B21 /* NetworkError.swift */; };
 		48E784E826CB1B0300D209EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E784E726CB1B0300D209EF /* AppDelegate.swift */; };
 		48E784EA26CB1B0300D209EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E784E926CB1B0300D209EF /* SceneDelegate.swift */; };
 		48E784F126CB1B0500D209EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48E784F026CB1B0500D209EF /* Assets.xcassets */; };
@@ -320,8 +329,6 @@
 		48E784E626CB1B0300D209EF /* DailySpaceWidget */ = {
 			isa = PBXGroup;
 			children = (
-				489DAB3F26D76253007155D3 /* DailySpaceWidget.entitlements */,
-				489DAB4026D762AC007155D3 /* MainWidgetExtension.entitlements */,
 				48E784FB26CB1D0800D209EF /* Application Layer */,
 				48E784FC26CB1D1400D209EF /* Presentation Layer */,
 				48E784FD26CB1D2C00D209EF /* Business Logic Layer */,
@@ -373,6 +380,8 @@
 		48E784FF26CB1D4C00D209EF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				489DAB3F26D76253007155D3 /* DailySpaceWidget.entitlements */,
+				489DAB4026D762AC007155D3 /* MainWidgetExtension.entitlements */,
 				48E784F526CB1B0500D209EF /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -647,15 +656,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				48E584C226D7778E00FF9FA8 /* Constant.swift in Sources */,
+				48E584DA26D8B1B200FF9FA8 /* BaseURLs.swift in Sources */,
 				48E34A3326D7278200D1DA7F /* MainWidget.swift in Sources */,
+				48E584D926D8B1AC00FF9FA8 /* APIKeys.swift in Sources */,
+				48E584D626D8B0B700FF9FA8 /* PhotoFetchServices.swift in Sources */,
 				48E584C826D856ED00FF9FA8 /* WidgetViewModel.swift in Sources */,
 				48E584D126D88E2300FF9FA8 /* KFManager.swift in Sources */,
 				48C79FE126D7334A00135770 /* ManagedPhotoMetadata.swift in Sources */,
 				48E34A3826D7278400D1DA7F /* MainWidget.intentdefinition in Sources */,
+				48E584DC26D8B1CB00FF9FA8 /* Date+currentDay.swift in Sources */,
 				48E584D426D88F8A00FF9FA8 /* UserDefaultManager.swift in Sources */,
+				48E584D826D8B10800FF9FA8 /* NetworkClient.swift in Sources */,
+				48E584D726D8B0FC00FF9FA8 /* NASAPhotoMetadata.swift in Sources */,
 				48E584CE26D88D3600FF9FA8 /* RealmManager.swift in Sources */,
 				48E34A4126D72AAE00D1DA7F /* PhotoMetadata.swift in Sources */,
+				48E584DD26D8B1D400FF9FA8 /* DateFormatter+toString+toDate.swift in Sources */,
+				48E584DB26D8B1BD00FF9FA8 /* EndPoints.swift in Sources */,
 				48C79FE026D7331100135770 /* PhotoStorageService.swift in Sources */,
+				48E584DE26D8B1DD00FF9FA8 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -892,7 +910,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = DailySpaceWidget/DailySpaceWidget.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "DailySpaceWidget/Supporting Files/DailySpaceWidget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2PTMH7A8WP;
 				INFOPLIST_FILE = "DailySpaceWidget/Supporting Files/Info.plist";
@@ -914,7 +932,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = DailySpaceWidget/DailySpaceWidget.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "DailySpaceWidget/Supporting Files/DailySpaceWidget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2PTMH7A8WP;
 				INFOPLIST_FILE = "DailySpaceWidget/Supporting Files/Info.plist";

@@ -41,6 +41,7 @@ struct RealmManager: RealmManagerProtocol {
   static func save<T: Object>(items: [T]) -> Bool{
     do {
       try realm.write {
+        realm.deleteAll()
         realm.add(items)
       }
       return true

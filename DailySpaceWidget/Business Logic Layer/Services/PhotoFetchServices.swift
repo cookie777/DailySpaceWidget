@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import Kingfisher
 
 protocol PhotoFetchService: AnyObject {
   /// Returns by default past 10 photos metadata

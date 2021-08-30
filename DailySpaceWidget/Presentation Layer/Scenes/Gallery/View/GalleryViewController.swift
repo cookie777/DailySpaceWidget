@@ -96,7 +96,7 @@ extension GalleryViewController {
         //  Use `KF` builder
         KF.url(item.imageHDURL)
           .loadDiskFileSynchronously()
-          .targetCache(KFManager.kfImageCache)
+          .targetCache(KFManager.imageCache)
           .cacheOriginalImage()
           .fade(duration: 0.25)
           .lowDataModeSource(.network(ImageResource(downloadURL: item.imageURL!)))

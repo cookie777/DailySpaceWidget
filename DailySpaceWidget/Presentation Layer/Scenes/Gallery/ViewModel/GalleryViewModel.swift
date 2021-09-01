@@ -91,17 +91,7 @@ class GalleryViewModel {
       }
       .map { photos -> [PhotoMetadata] in
         return photos.map { photo in
-          let hdURL = photo.hdURL == nil ? nil : URL(string: photo.hdURL!)
-          let url = photo.url == nil ? nil : URL(string: photo.url!)
-          
-          return PhotoMetadata(
-            copyright: photo.copyright,
-            date: DateFormatter.toDate(string: photo.date),
-            explanation: photo.explanation,
-            imageHDURL: hdURL,
-            imageURL: url,
-            title: photo.title
-          )
+          photo.toPhotoMetadata()
         }
       }
       .do(onNext: { [weak self] items in

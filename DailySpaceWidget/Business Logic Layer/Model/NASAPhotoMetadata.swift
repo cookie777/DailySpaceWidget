@@ -23,3 +23,19 @@ struct NASAPhotoMetadata: Codable {
   }
 }
 
+extension NASAPhotoMetadata {
+  func toPhotoMetadata() -> PhotoMetadata {
+    let hdURL = self.hdURL == nil ? nil : URL(string: self.hdURL!)
+    let url = self.url == nil ? nil : URL(string: self.url!)
+    
+    return PhotoMetadata(
+      copyright: self.copyright,
+      date: DateFormatter.toDate(string: self.date),
+      explanation: self.explanation,
+      imageHDURL: hdURL,
+      imageURL: url,
+      title: self.title
+    )
+  }
+}
+

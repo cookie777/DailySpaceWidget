@@ -85,7 +85,7 @@ extension PhotoCell {
   
   func updateUI(item: PhotoMetadata) {
     titleLabel.text = item.title
-    dateLabel.text = DateFormatter.toStringForView(date: item.date)
+    dateLabel.text = DateFormatter.toStringForApp(date: item.date)
     copyrightLabel.text = item.copyright
   }
 }

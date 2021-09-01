@@ -9,10 +9,18 @@ import Foundation
 
 extension DateFormatter {
   /// Date -> "d MMM y",  12 Aug 2021
-  static func toStringForView(date: Date?) -> String? {
+  static func toStringForApp(date: Date?) -> String? {
     guard let date = date else { return nil }
     let formatter = DateFormatter()
     formatter.dateFormat = "d MMM y"
+    return formatter.string(from: date)
+  }
+  
+  /// Date -> "d MMM",  12 Aug
+  static func toStringForWidget(date: Date?) -> String? {
+    guard let date = date else { return nil }
+    let formatter = DateFormatter()
+    formatter.dateFormat = "d MMM"
     return formatter.string(from: date)
   }
   

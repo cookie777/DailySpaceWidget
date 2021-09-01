@@ -5,10 +5,11 @@
 //  Created by Takayuki Yamaguchi on 2021-08-26.
 //
 
-import UIKit
+
 import Kingfisher
 import RxSwift
 import RxCocoa
+
 
 class WidgetViewModel {
   
@@ -16,9 +17,6 @@ class WidgetViewModel {
   
   var isFetching: Bool = false
   var count: Int = 0
-  
-  // out put,  vm -> view
-  private var updatePhoto = PublishRelay<UIImage?>()
   
   private var photoStorageService: PhotoStorageService!
   private var photoFetchService: PhotoFetchService!
@@ -31,49 +29,29 @@ class WidgetViewModel {
     self.photoFetchService = photoFetchService
   }
   
-  
-  //  func getImage(completion: @escaping ((UIImage?)->()) ) {
-  func getImage() -> Observable<UIImage?> {
-    //    self.isFetching = true
-    //
-    //
-    //    if photoStorageService.hasLatestMetadata() {
-    //
-    //      let latesMetadata = photoStorageService.restoreLatestMetaData()
-    //
-    //      if let hdURL = latesMetadata?.imageHDURL {
-    //        KFManager.checkImageCache(key: hdURL) { image in
-    //
-    //          if let image = image {
-    //            print("fetched from HD cache")
-    //            completion(image)
-    //          } else {
-    //
-    //            if let url = latesMetadata?.imageURL, let imageURL = URL(string: url) {
-    //              KFManager.getImage(url: imageURL) { image in
-    //                print("fetched normal image")
-    //                completion(image)
-    //              }
-    //            } else {
-    //              completion(nil)
-    //            }
-    //
-    //
-    //          }
-    //
-    //        }
-    //      } else {
-    //        if let url = latesMetadata?.imageURL, let imageURL = URL(string: url) {
-    //          KFManager.getImage(url: imageURL) { image in
-    //            print("fetched normal image")
-    //            completion(image)
-    //          }
-    //        } else {
-    //          completion(nil)
-    //        }
-    //      }
-    //      return
-    //    }
+  func getItem() -> Observable<(UIImage?, PhotoMetadata?)> {
+    
+    // If already has metadata, try to use it.
+    if photoStorageService.hasLatestMetadata() {
+      let latesMetadata = photoStorageService.restoreLatestMetaData()
+      return CustomKFManager.checkImageCache(key: latesMetadata?.imageHDURL)
+        .flatMap { image -> Observable<UIImage?> in
+          // try to use hd image (don't fetch)
+          if let image = image {
+            debugPrint("Has metadata and hd cache. Success.")
+            let downsampled = image.kf.resize(to: CustomKFManager.downsamplingImageSize, for: .aspectFit)
+            return Observable.just(downsampled)
+          // if no, use cache or fetch norma image
+          } else {
+            debugPrint("Has metadata and not hd, but normal. Success.")
+            return CustomKFManager.getImage(key: latesMetadata?.imageURL)
+          }
+        }
+        .flatMap { image in
+          Observable.just((image, latesMetadata?.toPhotoMetadata()))
+        }
+    }
+
     // get metadata and save. + fetch one image
     return photoFetchService.getPhotosMetadata(days: Constant.Config.numOfDaysToKeep + 5)
       // eliminate error
@@ -91,43 +69,21 @@ class WidgetViewModel {
       }
       // convert to `PhotoMetadata`
       .map { photos -> [PhotoMetadata] in
-        print("w:fetchd")
-        return photos.map { photo in
-          let hdURL = photo.hdURL == nil ? nil : URL(string: photo.hdURL!)
-          let url = photo.url == nil ? nil : URL(string: photo.url!)
-          
-          return PhotoMetadata(
-            copyright: photo.copyright,
-            date: DateFormatter.toDate(string: photo.date),
-            explanation: photo.explanation,
-            imageHDURL: hdURL,
-            imageURL: url,
-            title: photo.title
-          )
-        }
+        return photos.map { $0.toPhotoMetadata()}
       }
       // store metadata to realm
       .do(onNext: { [weak self] items in
         if let res = self?.photoStorageService.storePhotoMetadata(photosMetadata: items), res {
-          debugPrint("succeeded storing fetch items")
+          debugPrint("Success: storing fetch items")
         }
-        //        self?.photoStorageService.storeLatestUpdateDate()
+        self?.photoStorageService.storeLatestUpdateDate()
       })
-      .flatMap { items in
-        return Observable<PhotoMetadata?>.just(items.first)
-      }
-      .flatMap({ item in
-        Observable<UIImage?>.create { observer -> Disposable in
-          
-          KFManager.getImage(url: item?.imageHDURL) { image in
-            print("fetched image from widget")
-            print(image)
-            observer.onNext(image)
-            observer.onCompleted()
+      .flatMap({ items -> Observable<(UIImage?, PhotoMetadata?)> in
+        debugPrint("Success: fetched metadata and fetched imageURL")
+        return CustomKFManager.getImage(url: items.first?.imageURL)
+          .flatMap { image in
+            Observable.just((image, items.first))
           }
-          return Disposables.create()
-          
-        }
       })
     
     

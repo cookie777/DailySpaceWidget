@@ -44,8 +44,8 @@
 		48E584C826D856ED00FF9FA8 /* WidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584C326D83FA800FF9FA8 /* WidgetViewModel.swift */; };
 		48E584CD26D88BD300FF9FA8 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CC26D88BD300FF9FA8 /* RealmManager.swift */; };
 		48E584CE26D88D3600FF9FA8 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CC26D88BD300FF9FA8 /* RealmManager.swift */; };
-		48E584D026D88D9500FF9FA8 /* KFManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CF26D88D9500FF9FA8 /* KFManager.swift */; };
-		48E584D126D88E2300FF9FA8 /* KFManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CF26D88D9500FF9FA8 /* KFManager.swift */; };
+		48E584D026D88D9500FF9FA8 /* CustomKFManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CF26D88D9500FF9FA8 /* CustomKFManager.swift */; };
+		48E584D126D88E2300FF9FA8 /* CustomKFManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CF26D88D9500FF9FA8 /* CustomKFManager.swift */; };
 		48E584D326D88E4B00FF9FA8 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584D226D88E4B00FF9FA8 /* UserDefaultManager.swift */; };
 		48E584D426D88F8A00FF9FA8 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584D226D88E4B00FF9FA8 /* UserDefaultManager.swift */; };
 		48E584D626D8B0B700FF9FA8 /* PhotoFetchServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851526CB2B4500D209EF /* PhotoFetchServices.swift */; };
@@ -129,7 +129,7 @@
 		48E34A3726D7278400D1DA7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48E584C326D83FA800FF9FA8 /* WidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewModel.swift; sourceTree = "<group>"; };
 		48E584CC26D88BD300FF9FA8 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		48E584CF26D88D9500FF9FA8 /* KFManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KFManager.swift; sourceTree = "<group>"; };
+		48E584CF26D88D9500FF9FA8 /* CustomKFManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKFManager.swift; sourceTree = "<group>"; };
 		48E584D226D88E4B00FF9FA8 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		48E784E426CB1B0300D209EF /* DailySpaceWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailySpaceWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E784E726CB1B0300D209EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -300,7 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				48E584CC26D88BD300FF9FA8 /* RealmManager.swift */,
-				48E584CF26D88D9500FF9FA8 /* KFManager.swift */,
+				48E584CF26D88D9500FF9FA8 /* CustomKFManager.swift */,
 				48E584D226D88E4B00FF9FA8 /* UserDefaultManager.swift */,
 			);
 			path = Manager;
@@ -661,7 +661,7 @@
 				48E584D926D8B1AC00FF9FA8 /* APIKeys.swift in Sources */,
 				48E584D626D8B0B700FF9FA8 /* PhotoFetchServices.swift in Sources */,
 				48E584C826D856ED00FF9FA8 /* WidgetViewModel.swift in Sources */,
-				48E584D126D88E2300FF9FA8 /* KFManager.swift in Sources */,
+				48E584D126D88E2300FF9FA8 /* CustomKFManager.swift in Sources */,
 				48C79FE126D7334A00135770 /* ManagedPhotoMetadata.swift in Sources */,
 				48E34A3826D7278400D1DA7F /* MainWidget.intentdefinition in Sources */,
 				48E584DC26D8B1CB00FF9FA8 /* Date+currentDay.swift in Sources */,
@@ -687,7 +687,7 @@
 				48B876AE26CC6D6200EE0B21 /* PhotoCell.swift in Sources */,
 				48E7850E26CB247D00D209EF /* GalleryViewController.swift in Sources */,
 				48E584D326D88E4B00FF9FA8 /* UserDefaultManager.swift in Sources */,
-				48E584D026D88D9500FF9FA8 /* KFManager.swift in Sources */,
+				48E584D026D88D9500FF9FA8 /* CustomKFManager.swift in Sources */,
 				48B8769626CB75D000EE0B21 /* BaseURLs.swift in Sources */,
 				48B8769426CB75BC00EE0B21 /* APIKeys.swift in Sources */,
 				48B8768E26CB4E0500EE0B21 /* NetworkClient.swift in Sources */,

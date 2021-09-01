@@ -15,3 +15,16 @@ struct PhotoMetadata: Hashable {
   let imageURL: URL?
   let title: String?
 }
+
+extension PhotoMetadata {
+  func toManaged() -> ManagedPhotoMetadata {
+    return ManagedPhotoMetadata(
+      copyright: self.copyright,
+      date: self.date,
+      explanation: self.explanation,
+      imageHDURL: self.imageHDURL?.description,
+      imageURL: self.imageURL?.description,
+      title: self.title
+    )
+  }
+}

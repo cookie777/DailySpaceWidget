@@ -46,38 +46,17 @@ class PhotoStorageServiceImplementation: PhotoStorageService {
     let managedPhotosMetadata = RealmManager.read(ofType: ManagedPhotoMetadata.self)
     
     return managedPhotosMetadata.map { managed in
-      
-      let imageHDURL = managed.imageHDURL == nil ? nil : URL(string: managed.imageHDURL!)!
-      let imageURL = managed.imageURL == nil ? nil : URL(string: managed.imageURL!)!
-      
-      return PhotoMetadata(
-        copyright: managed.copyright,
-        date: managed.date,
-        explanation: managed.explanation,
-        imageHDURL: imageHDURL,
-        imageURL: imageURL,
-        title: managed.title
-      )
+      managed.toPhotoMetadata()
     }
   }
   
   @discardableResult
   func storePhotoMetadata(photosMetadata: [PhotoMetadata]) -> Bool {
-    
     let managedPhotosMetadata = photosMetadata.map { metadata in
-      ManagedPhotoMetadata(
-        copyright: metadata.copyright,
-        date: metadata.date,
-        explanation: metadata.explanation,
-        imageHDURL: metadata.imageHDURL?.description,
-        imageURL: metadata.imageURL?.description,
-        title: metadata.title
-      )
+      metadata.toManaged()
     }
-    
     return RealmManager.save(items: managedPhotosMetadata)
   }
-  
   
   func restoreLatestMetaData() -> ManagedPhotoMetadata? {
     let items = RealmManager.read(ofType: ManagedPhotoMetadata.self)

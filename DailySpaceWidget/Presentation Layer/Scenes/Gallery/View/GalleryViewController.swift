@@ -68,9 +68,7 @@ extension GalleryViewController {
     bindButtons()
     
     viewModel.getPhotoMetadata()
-
   }
-
 }
 
 // MARK: - Bindings
@@ -89,20 +87,29 @@ extension GalleryViewController {
     collectionView.rx.willDisplayCell
       .filter { $0.cell.isKind(of: PhotoCell.self) }
       .map { ($0.cell as! PhotoCell, $0.at.item) }
+      // reset image
       .do(onNext: { (cell, index) in cell.imageViewContainer.imageView.image = nil })
-      .subscribe(onNext: { [weak self] (cell, index) in
-        guard let self = self else { return }
-        let item = self.viewModel.photosMetadata.value[index]
-        //  Use `KF` builder
-        KF.url(item.imageHDURL)
-          .loadDiskFileSynchronously()
-          .cacheOriginalImage()
-          .fade(duration: 0.25)
-          .lowDataModeSource(.network(ImageResource(downloadURL: item.imageURL!)))
-          .onSuccess { result in  }
-          .onFailure { error in }
-          .set(to: cell.imageViewContainer.imageView )
+      // try to use widget image for placeholder if you have
+      .flatMap({ [weak self] (cell, index) -> Observable<(PhotoCell, PhotoMetadata, UIImage?)> in
+        guard let item = self?.viewModel.photosMetadata.value[index] else {
+          fatalError("can not find item")
+        }
+        return CustomKFManager.checkImageCache(key: item.imageURL?.absoluteString)
+          .flatMap { image in
+            Observable.just((cell, item, image))
+          }
       })
+      // fetch and apply iamge
+      .subscribe { (cell, item, widgetImage) in
+          KF.url(item.imageHDURL)
+            .placeholder(widgetImage)
+            .loadDiskFileSynchronously()
+            .targetCache(CustomKFManager.imageCache)
+            .cacheOriginalImage()
+            .fade(duration: 0.25)
+            .lowDataModeSource(.network(ImageResource(downloadURL: item.imageURL!)))
+            .set(to: cell.imageViewContainer.imageView )
+      }
       .disposed(by: disposeBag)
     
     
@@ -114,8 +121,6 @@ extension GalleryViewController {
         guard let index = self?.collectionView.indexPathsForVisibleItems.first?.item else { return }
         self?.viewModel.currentIndex = index
       }.disposed(by: disposeBag)
-
-    
   }
   
   
@@ -150,8 +155,6 @@ extension GalleryViewController {
       .flatMap({ Observable.just(())})
       .bind(to: viewModel.didDescriptionTapped)
       .disposed(by: disposeBag)
-    
-  
   }
 }
 

@@ -33,3 +33,20 @@ class ManagedPhotoMetadata: Object {
     self.title = title
   }
 }
+
+extension ManagedPhotoMetadata {
+  func toPhotoMetadata() -> PhotoMetadata {
+    
+    let hdURL = self.imageHDURL == nil ? nil : URL(string: self.imageHDURL!)
+    let url = self.imageURL == nil ? nil : URL(string: self.imageURL!)
+    
+    return PhotoMetadata(
+      copyright: self.copyright,
+      date: self.date,
+      explanation: self.explanation,
+      imageHDURL: hdURL,
+      imageURL: url,
+      title: self.title
+    )
+  }
+}

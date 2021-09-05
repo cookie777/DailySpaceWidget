@@ -48,7 +48,6 @@ struct CustomKFManager: KFManagerProtocol {
       ) { result in
         switch result {
           case .success(let value):
-            print(value)
             observer.onNext(value.image)
             
           case .failure(let error):

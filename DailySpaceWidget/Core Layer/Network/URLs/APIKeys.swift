@@ -10,5 +10,3 @@ import Foundation
 struct APIKeys {
   static let NASA = ""
 }
-
-

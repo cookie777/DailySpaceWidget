@@ -30,7 +30,7 @@ extension NASAPhotoMetadata {
     
     return PhotoMetadata(
       copyright: self.copyright,
-      date: DateFormatter.toDate(string: self.date),
+      date: Formatter.stringToDate(string: self.date),
       explanation: self.explanation,
       imageHDURL: hdURL,
       imageURL: url,

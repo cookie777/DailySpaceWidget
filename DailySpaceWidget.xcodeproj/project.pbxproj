@@ -13,7 +13,14 @@
 		4828FFE326D1CE4300D8EAE3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE226D1CE4300D8EAE3 /* DetailViewController.swift */; };
 		4828FFE626D3694B00D8EAE3 /* PhotoStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE526D3694B00D8EAE3 /* PhotoStorageService.swift */; };
 		4880199426D3708D008ADB2E /* ManagedPhotoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4880199326D3708D008ADB2E /* ManagedPhotoMetadata.swift */; };
-		4880199626D43C39008ADB2E /* DateFormatter+toString+toDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4880199526D43C39008ADB2E /* DateFormatter+toString+toDate.swift */; };
+		4880199626D43C39008ADB2E /* Formatter+toString+toDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4880199526D43C39008ADB2E /* Formatter+toString+toDate.swift */; };
+		4891112026DF53B100E52A05 /* SmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891111E26DF53A600E52A05 /* SmallView.swift */; };
+		4891112426DF585E00E52A05 /* MainWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891112226DF583100E52A05 /* MainWidgetEntryView.swift */; };
+		4891112826DF589300E52A05 /* PhotoMetadataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891112626DF588300E52A05 /* PhotoMetadataEntry.swift */; };
+		4891112B26DF5A5C00E52A05 /* MediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891112926DF5A3200E52A05 /* MediumView.swift */; };
+		4891112E26DF5AB700E52A05 /* LargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891112C26DF5A9400E52A05 /* LargeView.swift */; };
+		4891113426E0222600E52A05 /* UIImage+withColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891113326E0222500E52A05 /* UIImage+withColor.swift */; };
+		4891113526E0231A00E52A05 /* UIImage+withColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891113326E0222500E52A05 /* UIImage+withColor.swift */; };
 		48B8768E26CB4E0500EE0B21 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8768D26CB4E0500EE0B21 /* NetworkClient.swift */; };
 		48B8769126CB4E3F00EE0B21 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769026CB4E3F00EE0B21 /* NetworkError.swift */; };
 		48B8769426CB75BC00EE0B21 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769326CB75BC00EE0B21 /* APIKeys.swift */; };
@@ -55,7 +62,7 @@
 		48E584DA26D8B1B200FF9FA8 /* BaseURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769526CB75D000EE0B21 /* BaseURLs.swift */; };
 		48E584DB26D8B1BD00FF9FA8 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769726CB75EA00EE0B21 /* EndPoints.swift */; };
 		48E584DC26D8B1CB00FF9FA8 /* Date+currentDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769A26CC63BC00EE0B21 /* Date+currentDay.swift */; };
-		48E584DD26D8B1D400FF9FA8 /* DateFormatter+toString+toDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4880199526D43C39008ADB2E /* DateFormatter+toString+toDate.swift */; };
+		48E584DD26D8B1D400FF9FA8 /* Formatter+toString+toDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4880199526D43C39008ADB2E /* Formatter+toString+toDate.swift */; };
 		48E584DE26D8B1DD00FF9FA8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769026CB4E3F00EE0B21 /* NetworkError.swift */; };
 		48E784E826CB1B0300D209EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E784E726CB1B0300D209EF /* AppDelegate.swift */; };
 		48E784EA26CB1B0300D209EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E784E926CB1B0300D209EF /* SceneDelegate.swift */; };
@@ -102,7 +109,13 @@
 		4828FFE226D1CE4300D8EAE3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4828FFE526D3694B00D8EAE3 /* PhotoStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStorageService.swift; sourceTree = "<group>"; };
 		4880199326D3708D008ADB2E /* ManagedPhotoMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPhotoMetadata.swift; sourceTree = "<group>"; };
-		4880199526D43C39008ADB2E /* DateFormatter+toString+toDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+toString+toDate.swift"; sourceTree = "<group>"; };
+		4880199526D43C39008ADB2E /* Formatter+toString+toDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+toString+toDate.swift"; sourceTree = "<group>"; };
+		4891111E26DF53A600E52A05 /* SmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallView.swift; sourceTree = "<group>"; };
+		4891112226DF583100E52A05 /* MainWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWidgetEntryView.swift; sourceTree = "<group>"; };
+		4891112626DF588300E52A05 /* PhotoMetadataEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMetadataEntry.swift; sourceTree = "<group>"; };
+		4891112926DF5A3200E52A05 /* MediumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumView.swift; sourceTree = "<group>"; };
+		4891112C26DF5A9400E52A05 /* LargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeView.swift; sourceTree = "<group>"; };
+		4891113326E0222500E52A05 /* UIImage+withColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+withColor.swift"; sourceTree = "<group>"; };
 		489DAB3F26D76253007155D3 /* DailySpaceWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DailySpaceWidget.entitlements; sourceTree = "<group>"; };
 		489DAB4026D762AC007155D3 /* MainWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MainWidgetExtension.entitlements; sourceTree = "<group>"; };
 		48B8768D26CB4E0500EE0B21 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
@@ -207,6 +220,34 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4891112126DF56CA00E52A05 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				48E34A3226D7278200D1DA7F /* MainWidget.swift */,
+				4891112226DF583100E52A05 /* MainWidgetEntryView.swift */,
+				4891111E26DF53A600E52A05 /* SmallView.swift */,
+				4891112926DF5A3200E52A05 /* MediumView.swift */,
+				4891112C26DF5A9400E52A05 /* LargeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4891112526DF587700E52A05 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4891112626DF588300E52A05 /* PhotoMetadataEntry.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		489F228026DF50910042C70D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				48E584C326D83FA800FF9FA8 /* WidgetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		48B8768C26CB4E0500EE0B21 /* Network Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,7 +301,7 @@
 				48B8769A26CC63BC00EE0B21 /* Date+currentDay.swift */,
 				48B876A726CC6C7500EE0B21 /* UIView+ConstraintLayout.swift */,
 				48B876E226D0B29300EE0B21 /* UIImage+createSFIcon.swift */,
-				4880199526D43C39008ADB2E /* DateFormatter+toString+toDate.swift */,
+				4891113326E0222500E52A05 /* UIImage+withColor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -280,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				48B876E526D0B4F600EE0B21 /* Constant.swift */,
+				4880199526D43C39008ADB2E /* Formatter+toString+toDate.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -287,8 +329,9 @@
 		48E34A3126D7278200D1DA7F /* MainWidget */ = {
 			isa = PBXGroup;
 			children = (
-				48E34A3226D7278200D1DA7F /* MainWidget.swift */,
-				48E584C326D83FA800FF9FA8 /* WidgetViewModel.swift */,
+				4891112526DF587700E52A05 /* Model */,
+				4891112126DF56CA00E52A05 /* View */,
+				489F228026DF50910042C70D /* ViewModel */,
 				48E34A3426D7278200D1DA7F /* MainWidget.intentdefinition */,
 				48E34A3526D7278400D1DA7F /* Assets.xcassets */,
 				48E34A3726D7278400D1DA7F /* Info.plist */,
@@ -662,6 +705,8 @@
 				48E584D626D8B0B700FF9FA8 /* PhotoFetchServices.swift in Sources */,
 				48E584C826D856ED00FF9FA8 /* WidgetViewModel.swift in Sources */,
 				48E584D126D88E2300FF9FA8 /* CustomKFManager.swift in Sources */,
+				4891112B26DF5A5C00E52A05 /* MediumView.swift in Sources */,
+				4891112E26DF5AB700E52A05 /* LargeView.swift in Sources */,
 				48C79FE126D7334A00135770 /* ManagedPhotoMetadata.swift in Sources */,
 				48E34A3826D7278400D1DA7F /* MainWidget.intentdefinition in Sources */,
 				48E584DC26D8B1CB00FF9FA8 /* Date+currentDay.swift in Sources */,
@@ -669,10 +714,14 @@
 				48E584D826D8B10800FF9FA8 /* NetworkClient.swift in Sources */,
 				48E584D726D8B0FC00FF9FA8 /* NASAPhotoMetadata.swift in Sources */,
 				48E584CE26D88D3600FF9FA8 /* RealmManager.swift in Sources */,
+				4891112826DF589300E52A05 /* PhotoMetadataEntry.swift in Sources */,
+				4891112026DF53B100E52A05 /* SmallView.swift in Sources */,
 				48E34A4126D72AAE00D1DA7F /* PhotoMetadata.swift in Sources */,
-				48E584DD26D8B1D400FF9FA8 /* DateFormatter+toString+toDate.swift in Sources */,
+				48E584DD26D8B1D400FF9FA8 /* Formatter+toString+toDate.swift in Sources */,
 				48E584DB26D8B1BD00FF9FA8 /* EndPoints.swift in Sources */,
 				48C79FE026D7331100135770 /* PhotoStorageService.swift in Sources */,
+				4891112426DF585E00E52A05 /* MainWidgetEntryView.swift in Sources */,
+				4891113526E0231A00E52A05 /* UIImage+withColor.swift in Sources */,
 				48E584DE26D8B1DD00FF9FA8 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -693,7 +742,8 @@
 				48B8768E26CB4E0500EE0B21 /* NetworkClient.swift in Sources */,
 				48E34A3926D7278400D1DA7F /* MainWidget.intentdefinition in Sources */,
 				4828FFDF26D1CE2600D8EAE3 /* DetailCoordinator.swift in Sources */,
-				4880199626D43C39008ADB2E /* DateFormatter+toString+toDate.swift in Sources */,
+				4880199626D43C39008ADB2E /* Formatter+toString+toDate.swift in Sources */,
+				4891113426E0222600E52A05 /* UIImage+withColor.swift in Sources */,
 				4828FFE326D1CE4300D8EAE3 /* DetailViewController.swift in Sources */,
 				4880199426D3708D008ADB2E /* ManagedPhotoMetadata.swift in Sources */,
 				4828FFE126D1CE3100D8EAE3 /* DetailViewModel.swift in Sources */,

@@ -17,11 +17,14 @@ class PanZoomImageContainer: UIScrollView {
     return imageView
   }()
   
+  var imageXAnchor: NSLayoutConstraint!
+  var imageYAnchor: NSLayoutConstraint!
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     contentInsetAdjustmentBehavior = .never
-    setUpUI()
     setUpZoom()
+    setUpUI()
   }
   
   required init?(coder: NSCoder) {
@@ -32,10 +35,12 @@ class PanZoomImageContainer: UIScrollView {
     // Setup scroll view
     minimumZoomScale = 1
     maximumZoomScale = 4
+    
     showsHorizontalScrollIndicator = false
     showsVerticalScrollIndicator = false
     
     delegate = self
+    
     
     let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
     doubleTapRecognizer.numberOfTapsRequired = 2
@@ -43,6 +48,7 @@ class PanZoomImageContainer: UIScrollView {
   }
   
   private func setUpUI() {
+    backgroundColor = .clear
     addSubview(imageView)
     
     NSLayoutConstraint.activate([

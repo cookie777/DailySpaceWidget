@@ -15,9 +15,9 @@ class GalleryViewModel {
   // input: View -> ViewModel
   var didTappedOnce = PublishRelay<Void>()
   var didDescriptionTapped = PublishRelay<Void>()
-  var currentIndex: Int = 0
+  var currentIndexPath: IndexPath? = IndexPath(item: 0, section: 0)
+  var cellDescriptionIndex = PublishRelay<Int>()
   // output: ViewModel -> View
-  var updateButtons = BehaviorRelay<CGFloat>(value: 0.0)
   var photosMetadata = BehaviorRelay<[PhotoMetadata]>(value: [])
   
   let coordinator: GalleryCoordinator!
@@ -35,31 +35,19 @@ class GalleryViewModel {
     self.photoStorageService = photoStorageService
     self.photoFetchService = photoFetchService
     
-    bindOnDidTappedOnce()
-    bindOnDidDescriptionTapped()
+    cellDescriptionIndex.bind { index in
+      print("tapped \(index)")
+    }.disposed(by: disposeBag)
   }
   
   // MARK: - Bindings
   private func bindOnDidTappedOnce() {
-    didTappedOnce
-      .flatMap({ [weak self] _ in
-        Observable.just(self?.updateButtons.value == 0 ? 1.0 : 0.0)
-      })
-      .bind(to: updateButtons)
-      .disposed(by: disposeBag)
-  }
-  
-  private func bindOnDidDescriptionTapped() {
-    didDescriptionTapped
-      .bind { [weak self] _ in
-        guard let self = self else { return }
-        // hide buttons
-        self.updateButtons.accept(0.0)
-        // coordinate to next
-        let photoMetaData = self.photosMetadata.value[self.currentIndex]
-        self.coordinator.pushToDetail(photoMetadata: photoMetaData)
-        
-      }.disposed(by: disposeBag)
+//    didTappedOnce
+//      .flatMap({ [weak self] _ in
+//        return Observable.just(self?.updateButtons.value == 0 ? 1.0 : 0.0)
+//      })
+//      .bind(to: updateButtons)
+//      .disposed(by: disposeBag)
   }
   
   

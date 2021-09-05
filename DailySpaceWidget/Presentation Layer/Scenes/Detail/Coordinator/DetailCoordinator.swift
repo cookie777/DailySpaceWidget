@@ -25,7 +25,6 @@ class DetailCoordinator: Coordinator {
   
   func end() {
     guard let galleryViewController = navigationController.topViewController as? GalleryViewController else { return }
-    galleryViewController.viewModel.updateButtons.accept(1.0)
     galleryViewController.dismiss(animated: true, completion: nil)
   }
   

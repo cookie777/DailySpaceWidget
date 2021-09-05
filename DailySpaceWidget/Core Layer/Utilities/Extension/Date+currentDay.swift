@@ -11,9 +11,9 @@ extension Date {
   
   static func getPastDate(days: Int = 0) -> String {
     if let pastDate = Calendar.current.date(byAdding: .day, value: -days, to: Date()) {
-      return DateFormatter.toStringForAPI(date: pastDate)!
+      return Formatter.dateToStringForAPI(date: pastDate)!
     } else {
-      return DateFormatter.toStringForAPI(date: Date())!
+      return Formatter.dateToStringForAPI(date: Date())!
     }
   }
   

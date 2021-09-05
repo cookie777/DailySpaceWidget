@@ -26,7 +26,7 @@ class GalleryViewController: UIViewController {
       forCellWithReuseIdentifier: PhotoCell.identifier
     )
     cv.isScrollEnabled = false
-    cv.backgroundColor = .systemPink
+    cv.backgroundColor = .black
     cv.translatesAutoresizingMaskIntoConstraints = false
     return cv
   }()
@@ -66,6 +66,7 @@ extension GalleryViewController {
     setUpUI()
     bindCollectionView()
     bindButtons()
+    bindOrientation()
     
     viewModel.getPhotoMetadata()
   }
@@ -87,8 +88,14 @@ extension GalleryViewController {
     collectionView.rx.willDisplayCell
       .filter { $0.cell.isKind(of: PhotoCell.self) }
       .map { ($0.cell as! PhotoCell, $0.at.item) }
-      // reset image
-      .do(onNext: { (cell, index) in cell.imageViewContainer.imageView.image = nil })
+      // cell reset
+      .do(onNext: { (cell, index) in
+        // send action about "what do you do if tapped?"
+        cell.didTapedHandler = { [weak self] in
+          self?.viewModel.cellDescriptionIndex.accept(index)
+        }
+        cell.imageViewBackground.image = Constant.UI.placeholderImage
+      })
       // try to use widget image for placeholder if you have
       .flatMap({ [weak self] (cell, index) -> Observable<(PhotoCell, PhotoMetadata, UIImage?)> in
         guard let item = self?.viewModel.photosMetadata.value[index] else {
@@ -100,15 +107,15 @@ extension GalleryViewController {
           }
       })
       // fetch and apply iamge
-      .subscribe { (cell, item, widgetImage) in
-          KF.url(item.imageHDURL)
-            .placeholder(widgetImage)
-            .loadDiskFileSynchronously()
-            .targetCache(CustomKFManager.imageCache)
-            .cacheOriginalImage()
-            .fade(duration: 0.25)
-            .lowDataModeSource(.network(ImageResource(downloadURL: item.imageURL!)))
-            .set(to: cell.imageViewContainer.imageView )
+      .subscribe { (cell, item, widgetImage) in          
+        KF.url(item.imageURL)
+          .placeholder(widgetImage)
+          .loadDiskFileSynchronously()
+          .targetCache(CustomKFManager.imageCache)
+          .cacheOriginalImage()
+          .fade(duration: 0.25)
+          .lowDataModeSource(.network(ImageResource(downloadURL: item.imageURL!)))
+          .set(to: cell.imageViewBackground )
       }
       .disposed(by: disposeBag)
     
@@ -119,41 +126,28 @@ extension GalleryViewController {
       .map { ($0.cell as! PhotoCell, $0.at.item) }
       .subscribe { [weak self] (cell, index) in
         guard let index = self?.collectionView.indexPathsForVisibleItems.first?.item else { return }
-        self?.viewModel.currentIndex = index
+        self?.viewModel.currentIndexPath?.item = index
       }.disposed(by: disposeBag)
   }
   
   
-  private func bindButtons() {
-    let tapGesture = UITapGestureRecognizer()
-    view.addGestureRecognizer(tapGesture)
-
-    // cancel single when double tap
-    let doubleGesture = UITapGestureRecognizer()
-    view.addGestureRecognizer(doubleGesture)
-    doubleGesture.numberOfTapsRequired = 2
-    tapGesture.require(toFail: doubleGesture)
-    
-    tapGesture.rx
-      .event
-      .bind(onNext: { [weak self] _ in
-          self?.viewModel.didTappedOnce.accept(())
-      })
-      .disposed(by: disposeBag)    
-
-    viewModel.updateButtons
-      .observe(on: MainScheduler.instance)
-      .bind { [weak self] alpha in
-          UIView.animate(withDuration: 0.16) {
-            self?.descriptionButton.alpha = alpha
-            self?.settingButton.alpha = alpha
-        }
-      }.disposed(by: disposeBag)
-    
+  private func bindButtons() {    
     descriptionButton.rx
       .tap
       .flatMap({ Observable.just(())})
       .bind(to: viewModel.didDescriptionTapped)
+      .disposed(by: disposeBag)
+  }
+  
+  private func bindOrientation() {
+    // if rotate, try to keep current cell by scrolling
+    NotificationCenter.default.rx
+      .notification(UIDevice.orientationDidChangeNotification)
+      .observe(on: MainScheduler.instance)
+      .subscribe(onNext: { [weak self] _ in
+        guard let self = self, let indexPath = self.viewModel.currentIndexPath else { return }
+        self.collectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+      })
       .disposed(by: disposeBag)
   }
 }
@@ -188,14 +182,14 @@ extension GalleryViewController {
     // Item
     let itemSize = NSCollectionLayoutSize(
       widthDimension: .fractionalWidth(1.0),
-      heightDimension: .absolute(Constant.UI.longerScreenLength)
+      heightDimension: .fractionalHeight(1.0)
     )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     
     // Group
     let groupSize = NSCollectionLayoutSize(
       widthDimension: .fractionalWidth(1.0),
-      heightDimension: itemSize.heightDimension
+      heightDimension: .fractionalHeight(1.0)
     )
     let group = NSCollectionLayoutGroup.horizontal(
       layoutSize: groupSize,
@@ -208,35 +202,6 @@ extension GalleryViewController {
     let config = UICollectionViewCompositionalLayoutConfiguration()
     config.scrollDirection = .horizontal
     config.contentInsetsReference = .automatic
-    
-    return UICollectionViewCompositionalLayout(section: section, configuration: config)
-  }
-  
-  private func createLandscapeCompositionalLayout() -> UICollectionViewCompositionalLayout {
-    
-    // Item
-    let itemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1.0),
-      heightDimension: .estimated(UIScreen.main.bounds.width)
-    )
-    let item = NSCollectionLayoutItem(layoutSize: itemSize)
-    
-    // Group
-    let groupSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1.0),
-      heightDimension: itemSize.heightDimension
-    )
-    let group = NSCollectionLayoutGroup.horizontal(
-      layoutSize: groupSize,
-      subitems: [item]
-    )
-    
-    // Section
-    let section = NSCollectionLayoutSection(group: group)
-    section.orthogonalScrollingBehavior = .groupPaging
-    let config = UICollectionViewCompositionalLayoutConfiguration()
-    config.scrollDirection = .horizontal
-    config.contentInsetsReference = .none
     
     return UICollectionViewCompositionalLayout(section: section, configuration: config)
   }

@@ -50,6 +50,13 @@
             ReferencedContainer = "container:DailySpaceWidget.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "NASAAPIKey"
+            value = "F73dD7UkZlrFVQ3yFl3czLMPrgFdIBMUQwoNgzyK"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

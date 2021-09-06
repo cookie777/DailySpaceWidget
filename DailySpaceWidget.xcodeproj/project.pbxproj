@@ -186,6 +186,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		481E85EB26E5F46D002A9B93 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
 		4828FFDA26D1CDA500D8EAE3 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +458,7 @@
 			children = (
 				48E7850726CB22D200D209EF /* Gallery */,
 				4828FFDA26D1CDA500D8EAE3 /* Detail */,
+				481E85EB26E5F46D002A9B93 /* Preview */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";

@@ -65,7 +65,6 @@ extension GalleryViewController {
     
     setUpUI()
     bindCollectionView()
-    bindButtons()
     bindOrientation()
     
     viewModel.getPhotoMetadata()
@@ -91,8 +90,11 @@ extension GalleryViewController {
       // cell reset
       .do(onNext: { (cell, index) in
         // send action about "what do you do if tapped?"
-        cell.didTapedHandler = { [weak self] in
-          self?.viewModel.cellDescriptionIndex.accept(index)
+        cell.didDescriptionTappedHandler = { [weak self] in
+          self?.viewModel.cellDescriptionTapped.accept(index)
+        }
+        cell.didPhotoFocusTappedHandler = { [weak self] in
+          self?.viewModel.cellPhotoFocusTapped.accept(index)
         }
         cell.imageViewBackground.image = Constant.UI.placeholderImage
       })
@@ -128,15 +130,6 @@ extension GalleryViewController {
         guard let index = self?.collectionView.indexPathsForVisibleItems.first?.item else { return }
         self?.viewModel.currentIndexPath?.item = index
       }.disposed(by: disposeBag)
-  }
-  
-  
-  private func bindButtons() {    
-    descriptionButton.rx
-      .tap
-      .flatMap({ Observable.just(())})
-      .bind(to: viewModel.didDescriptionTapped)
-      .disposed(by: disposeBag)
   }
   
   private func bindOrientation() {

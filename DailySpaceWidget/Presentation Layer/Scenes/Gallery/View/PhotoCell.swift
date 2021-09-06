@@ -22,10 +22,10 @@ class PhotoCell: UICollectionViewCell {
   }
   
   // MARK: - Properties
-  
   static let identifier = "photoCell"
   private(set) var disposeBag = DisposeBag()
-  var didTapedHandler: (()->())?
+  var didDescriptionTappedHandler: (()->())?
+  var didPhotoFocusTappedHandler: (()->())?
   
   var imageViewBackground: UIImageView = {
     let imageView = UIImageView()
@@ -59,13 +59,19 @@ class PhotoCell: UICollectionViewCell {
   
   let descriptionButton: UIButton = {
     let bt = UIButton()
-    bt.setImage(UIImage.createSFIcon(name: "doc.text.fill", size: 40), for: .normal)
+    bt.setImage(UIImage.createSFIcon(name: "doc.circle.fill", size: 40), for: .normal)
+    return bt
+  }()
+  
+  let photoFocusButton: UIButton = {
+    let bt = UIButton()
+    bt.setImage(UIImage.createSFIcon(name: "magnifyingglass.circle.fill", size: 40), for: .normal)
     return bt
   }()
   
   lazy var infoStackView: VerticalStackView = {
     let sv = VerticalStackView(
-      arrangedSubviews: [titleLabel, copyrightLabel, dateLabel, descriptionButton],
+      arrangedSubviews: [titleLabel, copyrightLabel, dateLabel, descriptionButton, photoFocusButton],
       spacing: 2,
       alignment: .leading
     )
@@ -81,29 +87,32 @@ class PhotoCell: UICollectionViewCell {
 }
 
 
-// MARK: - 
-
+// MARK: Bindings
 extension PhotoCell {
-
   func bindButton() {
     descriptionButton.rx
       .tap
       .bind(onNext: { [weak self] _ in
-        self?.didTapedHandler?()
+        self?.didDescriptionTappedHandler?()
+      })
+      .disposed(by: disposeBag)
+    
+    photoFocusButton.rx
+      .tap
+      .bind(onNext: { [weak self] _ in
+        self?.didDescriptionTappedHandler?()
       })
       .disposed(by: disposeBag)
   }
 }
 
-// MARK: - UI Setup
 
+// MARK: - UI Setup
 extension PhotoCell {
   private func setupUI() {
-    
     self.contentView.addSubview(imageViewBackground)
     self.contentView.addSubview(copyrightLabel)
     self.contentView.addSubview(infoStackView)
-    
     self.contentView.backgroundColor = .black
     
     imageViewBackground.matchParent()

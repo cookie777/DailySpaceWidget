@@ -13,10 +13,9 @@ class GalleryViewModel {
   
   var disposeBag = DisposeBag()
   // input: View -> ViewModel
-  var didTappedOnce = PublishRelay<Void>()
-  var didDescriptionTapped = PublishRelay<Void>()
   var currentIndexPath: IndexPath? = IndexPath(item: 0, section: 0)
-  var cellDescriptionIndex = PublishRelay<Int>()
+  var cellDescriptionTapped = PublishRelay<Int>()
+  var cellPhotoFocusTapped = PublishRelay<Int>()
   // output: ViewModel -> View
   var photosMetadata = BehaviorRelay<[PhotoMetadata]>(value: [])
   
@@ -35,25 +34,33 @@ class GalleryViewModel {
     self.photoStorageService = photoStorageService
     self.photoFetchService = photoFetchService
     
-    cellDescriptionIndex.bind { index in
-      print("tapped \(index)")
-    }.disposed(by: disposeBag)
+    bindOnCellDescriptionTapped()
   }
   
   // MARK: - Bindings
-  private func bindOnDidTappedOnce() {
-//    didTappedOnce
-//      .flatMap({ [weak self] _ in
-//        return Observable.just(self?.updateButtons.value == 0 ? 1.0 : 0.0)
-//      })
-//      .bind(to: updateButtons)
-//      .disposed(by: disposeBag)
-  }
   
-  
-  // MARK: - Service Methods
-  func getPhotoMetadata() {
+  private func bindOnCellDescriptionTapped() {
+    cellDescriptionTapped
+      .bind { [weak self] index in
+        guard let self = self else { return }
+        // coordinate to next
+        let photoMetaData = self.photosMetadata.value[index]
+        self.coordinator.pushToDetail(photoMetadata: photoMetaData)
+      }.disposed(by: disposeBag)
     
+    cellPhotoFocusTapped
+      .bind { [weak self] index in
+        guard let self = self else { return }
+        // coordinate to next
+        let photoMetaData = self.photosMetadata.value[index]
+        self.coordinator.pushToDetail(photoMetadata: photoMetaData)
+      }.disposed(by: disposeBag)
+  }
+
+
+  // MARK: - Service Methods
+  
+  func getPhotoMetadata() {
     // if same day, restore from catch
     if photoStorageService.hasLatestMetadata() {
       let items = photoStorageService.restorePhotoMetadata()
@@ -90,7 +97,6 @@ class GalleryViewModel {
       })
       .bind(to: photosMetadata)
       .disposed(by: disposeBag)
-    
   }
   
   func getMockMetadata() {

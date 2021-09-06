@@ -8,5 +8,5 @@
 import Foundation
 
 struct APIKeys {
-  static let NASA = ""
+  static let NASA = ProcessInfo.processInfo.environment["NASAAPIKey"]!
 }

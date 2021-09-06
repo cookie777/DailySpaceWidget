@@ -84,6 +84,11 @@
             isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
+            key = "NASAAPIKey"
+            value = "F73dD7UkZlrFVQ3yFl3czLMPrgFdIBMUQwoNgzyK"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "_XCWidgetDefaultView"
             value = "timeline"
             isEnabled = "YES">

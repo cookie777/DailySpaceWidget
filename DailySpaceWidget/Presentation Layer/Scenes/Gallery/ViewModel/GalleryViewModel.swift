@@ -15,7 +15,7 @@ class GalleryViewModel {
   // input: View -> ViewModel
   var currentIndexPath: IndexPath? = IndexPath(item: 0, section: 0)
   var cellDescriptionTapped = PublishRelay<Int>()
-  var cellPhotoFocusTapped = PublishRelay<Int>()
+  var cellPreviewTapped = PublishRelay<Int>()
   // output: ViewModel -> View
   var photosMetadata = BehaviorRelay<[PhotoMetadata]>(value: [])
   
@@ -44,17 +44,24 @@ class GalleryViewModel {
       .bind { [weak self] index in
         guard let self = self else { return }
         // coordinate to next
-        let photoMetaData = self.photosMetadata.value[index]
-        self.coordinator.pushToDetail(photoMetadata: photoMetaData)
-      }.disposed(by: disposeBag)
+        let photoMetadata = self.photosMetadata.value[index]
+        self.coordinator.presentDetail(photoMetadata: photoMetadata)
+      }
+      .disposed(by: disposeBag)
     
-    cellPhotoFocusTapped
-      .bind { [weak self] index in
-        guard let self = self else { return }
-        // coordinate to next
-        let photoMetaData = self.photosMetadata.value[index]
-        self.coordinator.pushToDetail(photoMetadata: photoMetaData)
-      }.disposed(by: disposeBag)
+    cellPreviewTapped
+      .flatMap { [weak self] index -> Observable<(UIImage?, URL?)> in
+        let photoMetadata = self?.photosMetadata.value[index]
+        return ImageManager.getImage(url: photoMetadata?.imageURL)
+          .flatMap { image -> Observable<(UIImage?, URL?)> in
+            Observable.just((image, photoMetadata?.imageHDURL))
+          }
+      }
+      .bind { [weak self] image, hdImageURL in
+        guard let image = image else { return }// Fix me, set place holder image
+        self?.coordinator.presentPreview(image: image, hdImageURL: hdImageURL )
+      }
+      .disposed(by: disposeBag)
   }
 
 

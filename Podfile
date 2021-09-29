@@ -10,8 +10,15 @@ target 'DailySpaceWidget' do
 	pod 'RxCocoa', '6.2.0'
 	pod 'Kingfisher', '~> 6.0'
   pod 'RealmSwift', '~>10'
+
+end
+
+target 'MainWidgetExtension' do
+  use_frameworks!
   
-  target 'MainWidgetExtension' do
-      inherit! :search_paths
-  end
+  # Pods for DailySpaceWidget
+  pod 'RxSwift', '6.2.0'
+  pod 'RxCocoa', '6.2.0'
+  pod 'Kingfisher', '~> 6.0'
+  pod 'RealmSwift', '~>10'
 end

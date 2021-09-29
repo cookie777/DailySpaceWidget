@@ -8,7 +8,6 @@
 import WidgetKit
 import SwiftUI
 import Intents
-import RxSwift
 
 struct Provider: IntentTimelineProvider {
   
@@ -18,14 +17,12 @@ struct Provider: IntentTimelineProvider {
     photoStorageService: PhotoStorageServiceImplementation(),
     photoFetchService: PhotosFetchServiceImplementation()
   )
-  let disposeBag = DisposeBag()
-  
   // place holder with no data
   func placeholder(in context: Context) -> PhotoMetadataEntry {
     return PhotoMetadataEntry.placeholder
   }
   
-  // place holder with data
+  // This is used at previewing your widget
   func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (PhotoMetadataEntry) -> ()) {
     let entry = PhotoMetadataEntry.snapshot
     completion(entry)
@@ -35,29 +32,29 @@ struct Provider: IntentTimelineProvider {
   func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
     debugPrint("✅ timeline start")
     
-    let midnight = Calendar.current.startOfDay(for: Date())
-    let nextMidnight = Calendar.current.date(byAdding: .day, value: 1, to: midnight)!
-    //    let current = Date()
-    //    let next = Calendar.current.date(byAdding: .minute, value: 4, to: current)!
+    //    let midnight = Calendar.current.startOfDay(for: Date())
+    //    let nextMidnight = Calendar.current.date(byAdding: .day, value: 1, to: midnight)!
+    let midnight = Date()
+    let nextMidnight = Calendar.current.date(byAdding: .hour, value: 1, to: midnight)!
+    print(midnight)
+    print(nextMidnight)
     var entries: [PhotoMetadataEntry] = []
     
-    viewModel.getItem()
-      .bind { uiImage, metadata in
-        // alternative image
-        let image = (uiImage == nil) ?
-          Image(uiImage: Constant.UI.placeholderImage) : Image(uiImage: uiImage!)
-        
-        let entry = PhotoMetadataEntry(
-          date: Date(),
-          data: metadata,
-          image: image,
-          configuration: configuration
-        )
-        entries.append(entry)
-        
-        let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
-        completion(timeline)
-      }.disposed(by: disposeBag)
+    let (uiImage, metadata) = viewModel.getItem()
+    let image = (uiImage == nil) ?
+    Image(uiImage: Constant.UI.placeholderImage) : Image(uiImage: uiImage!)
+
+    let entry = PhotoMetadataEntry(
+      date: Date(),
+      data: metadata,
+      image: image,
+      configuration: configuration
+    )
+    entries.append(entry)
+    print(image)
+
+    let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
+      completion(timeline)
   }
 }
 

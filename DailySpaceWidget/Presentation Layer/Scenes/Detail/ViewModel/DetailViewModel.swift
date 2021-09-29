@@ -26,7 +26,7 @@ class DetailViewModel {
     
     didBackTapped
       .bind(onNext: { [weak self] _ in
-        self?.coordinator.end()
+        self?.coordinator.dismiss()
       })
       .disposed(by: disposeBag)
   }

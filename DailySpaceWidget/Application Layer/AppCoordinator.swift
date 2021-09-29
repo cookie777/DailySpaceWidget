@@ -8,6 +8,8 @@
 import UIKit
 
 class AppCoordinator: Coordinator {
+  var navigationController: UINavigationController = UINavigationController()
+  
   let window: UIWindow?
   
   init(window: UIWindow?) {
@@ -15,8 +17,6 @@ class AppCoordinator: Coordinator {
   }
   
   func start() {
-    let navigationController = UINavigationController()
-//    navigationController.hidesBarsOnTap = true
     navigationController.navigationBar.isHidden = true
     if #available(iOS 13.0, *) {
       navigationController.overrideUserInterfaceStyle = .light

@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15C4D037403F6D800D343A47 /* Pods_MainWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE8D184A48D4FEE1A1D1015 /* Pods_MainWidgetExtension.framework */; };
+		481E85F026E5F584002A9B93 /* PreviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E85EF26E5F584002A9B93 /* PreviewCoordinator.swift */; };
+		481E85F226E5F594002A9B93 /* PreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E85F126E5F594002A9B93 /* PreviewViewModel.swift */; };
+		481E85F426E5F59F002A9B93 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E85F326E5F59F002A9B93 /* PreviewViewController.swift */; };
+		481E85F626E5F742002A9B93 /* PresentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E85F526E5F742002A9B93 /* PresentCoordinator.swift */; };
+		4824B4A627041AE100620140 /* PhotoFetchServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851526CB2B4500D209EF /* PhotoFetchServices.swift */; };
+		4824B4A727041B8900620140 /* PhotoStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE526D3694B00D8EAE3 /* PhotoStorageService.swift */; };
+		4824B4A827041B9400620140 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CF26D88D9500FF9FA8 /* ImageManager.swift */; };
+		4824B4A927041B9900620140 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8768D26CB4E0500EE0B21 /* NetworkClient.swift */; };
 		4828FFDF26D1CE2600D8EAE3 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFDE26D1CE2600D8EAE3 /* DetailCoordinator.swift */; };
 		4828FFE126D1CE3100D8EAE3 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE026D1CE3100D8EAE3 /* DetailViewModel.swift */; };
 		4828FFE326D1CE4300D8EAE3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE226D1CE4300D8EAE3 /* DetailViewController.swift */; };
@@ -36,7 +43,6 @@
 		48B876D726CF45C500EE0B21 /* PanZoomImageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876D626CF45C500EE0B21 /* PanZoomImageContainer.swift */; };
 		48B876E326D0B29300EE0B21 /* UIImage+createSFIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876E226D0B29300EE0B21 /* UIImage+createSFIcon.swift */; };
 		48B876E626D0B4F600EE0B21 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B876E526D0B4F600EE0B21 /* Constant.swift */; };
-		48C79FE026D7331100135770 /* PhotoStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828FFE526D3694B00D8EAE3 /* PhotoStorageService.swift */; };
 		48C79FE126D7334A00135770 /* ManagedPhotoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4880199326D3708D008ADB2E /* ManagedPhotoMetadata.swift */; };
 		48E34A2E26D7278200D1DA7F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E34A2D26D7278200D1DA7F /* WidgetKit.framework */; };
 		48E34A3026D7278200D1DA7F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E34A2F26D7278200D1DA7F /* SwiftUI.framework */; };
@@ -51,13 +57,10 @@
 		48E584C826D856ED00FF9FA8 /* WidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584C326D83FA800FF9FA8 /* WidgetViewModel.swift */; };
 		48E584CD26D88BD300FF9FA8 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CC26D88BD300FF9FA8 /* RealmManager.swift */; };
 		48E584CE26D88D3600FF9FA8 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CC26D88BD300FF9FA8 /* RealmManager.swift */; };
-		48E584D026D88D9500FF9FA8 /* CustomKFManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CF26D88D9500FF9FA8 /* CustomKFManager.swift */; };
-		48E584D126D88E2300FF9FA8 /* CustomKFManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CF26D88D9500FF9FA8 /* CustomKFManager.swift */; };
+		48E584D026D88D9500FF9FA8 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584CF26D88D9500FF9FA8 /* ImageManager.swift */; };
 		48E584D326D88E4B00FF9FA8 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584D226D88E4B00FF9FA8 /* UserDefaultManager.swift */; };
 		48E584D426D88F8A00FF9FA8 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E584D226D88E4B00FF9FA8 /* UserDefaultManager.swift */; };
-		48E584D626D8B0B700FF9FA8 /* PhotoFetchServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851526CB2B4500D209EF /* PhotoFetchServices.swift */; };
 		48E584D726D8B0FC00FF9FA8 /* NASAPhotoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851226CB27CA00D209EF /* NASAPhotoMetadata.swift */; };
-		48E584D826D8B10800FF9FA8 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8768D26CB4E0500EE0B21 /* NetworkClient.swift */; };
 		48E584D926D8B1AC00FF9FA8 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769326CB75BC00EE0B21 /* APIKeys.swift */; };
 		48E584DA26D8B1B200FF9FA8 /* BaseURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769526CB75D000EE0B21 /* BaseURLs.swift */; };
 		48E584DB26D8B1BD00FF9FA8 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8769726CB75EA00EE0B21 /* EndPoints.swift */; };
@@ -75,6 +78,7 @@
 		48E7851026CB264000D209EF /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7850F26CB264000D209EF /* GalleryViewModel.swift */; };
 		48E7851326CB27CA00D209EF /* NASAPhotoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851226CB27CA00D209EF /* NASAPhotoMetadata.swift */; };
 		48E7851626CB2B4500D209EF /* PhotoFetchServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E7851526CB2B4500D209EF /* PhotoFetchServices.swift */; };
+		7077C5720358EB1259A64486 /* Pods_MainWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1241865604D9F02CF204AC4F /* Pods_MainWidgetExtension.framework */; };
 		766E94E67CD48E253019A682 /* Pods_DailySpaceWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF3E776308FD41DCDBFAA68 /* Pods_DailySpaceWidget.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +107,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1241865604D9F02CF204AC4F /* Pods_MainWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MainWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		182D922C3EA5D42BA61A91E4 /* Pods-DailySpaceWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailySpaceWidget.release.xcconfig"; path = "Target Support Files/Pods-DailySpaceWidget/Pods-DailySpaceWidget.release.xcconfig"; sourceTree = "<group>"; };
+		481E85EF26E5F584002A9B93 /* PreviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCoordinator.swift; sourceTree = "<group>"; };
+		481E85F126E5F594002A9B93 /* PreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewModel.swift; sourceTree = "<group>"; };
+		481E85F326E5F59F002A9B93 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		481E85F526E5F742002A9B93 /* PresentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentCoordinator.swift; sourceTree = "<group>"; };
 		4828FFDE26D1CE2600D8EAE3 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		4828FFE026D1CE3100D8EAE3 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		4828FFE226D1CE4300D8EAE3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -142,7 +151,7 @@
 		48E34A3726D7278400D1DA7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48E584C326D83FA800FF9FA8 /* WidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewModel.swift; sourceTree = "<group>"; };
 		48E584CC26D88BD300FF9FA8 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		48E584CF26D88D9500FF9FA8 /* CustomKFManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKFManager.swift; sourceTree = "<group>"; };
+		48E584CF26D88D9500FF9FA8 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		48E584D226D88E4B00FF9FA8 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		48E784E426CB1B0300D209EF /* DailySpaceWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailySpaceWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E784E726CB1B0300D209EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,10 +167,11 @@
 		48E7851226CB27CA00D209EF /* NASAPhotoMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAPhotoMetadata.swift; sourceTree = "<group>"; };
 		48E7851526CB2B4500D209EF /* PhotoFetchServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFetchServices.swift; sourceTree = "<group>"; };
 		4AF3E776308FD41DCDBFAA68 /* Pods_DailySpaceWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailySpaceWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FE8D184A48D4FEE1A1D1015 /* Pods_MainWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MainWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A87084FEB390156B5C222679 /* Pods-MainWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MainWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-MainWidgetExtension/Pods-MainWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		4E3E2ADCEE707A8C321B6F82 /* Pods-MainWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MainWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-MainWidgetExtension/Pods-MainWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		6BF4A32386C8E5ED0E498A8D /* Pods-DailySpaceWidget-MainWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailySpaceWidget-MainWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-DailySpaceWidget-MainWidgetExtension/Pods-DailySpaceWidget-MainWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		8A4DD61E280ACA598AAF2062 /* Pods-MainWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MainWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-MainWidgetExtension/Pods-MainWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		A5F2A5E5D8A44E0D820D2678 /* Pods-DailySpaceWidget-MainWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailySpaceWidget-MainWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-DailySpaceWidget-MainWidgetExtension/Pods-DailySpaceWidget-MainWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		CBCA79CEBF398E905258B1CF /* Pods-DailySpaceWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailySpaceWidget.debug.xcconfig"; path = "Target Support Files/Pods-DailySpaceWidget/Pods-DailySpaceWidget.debug.xcconfig"; sourceTree = "<group>"; };
-		EDB94E7B012FEB56A3702883 /* Pods-MainWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MainWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-MainWidgetExtension/Pods-MainWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +181,7 @@
 			files = (
 				48E34A3026D7278200D1DA7F /* SwiftUI.framework in Frameworks */,
 				48E34A2E26D7278200D1DA7F /* WidgetKit.framework in Frameworks */,
-				15C4D037403F6D800D343A47 /* Pods_MainWidgetExtension.framework in Frameworks */,
+				7077C5720358EB1259A64486 /* Pods_MainWidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,8 +199,35 @@
 		481E85EB26E5F46D002A9B93 /* Preview */ = {
 			isa = PBXGroup;
 			children = (
+				481E85EC26E5F533002A9B93 /* Coordinator */,
+				481E85ED26E5F540002A9B93 /* ViewModel */,
+				481E85EE26E5F548002A9B93 /* View */,
 			);
 			path = Preview;
+			sourceTree = "<group>";
+		};
+		481E85EC26E5F533002A9B93 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				481E85EF26E5F584002A9B93 /* PreviewCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		481E85ED26E5F540002A9B93 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				481E85F126E5F594002A9B93 /* PreviewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		481E85EE26E5F548002A9B93 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				481E85F326E5F59F002A9B93 /* PreviewViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4828FFDA26D1CDA500D8EAE3 /* Detail */ = {
@@ -350,7 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				48E584CC26D88BD300FF9FA8 /* RealmManager.swift */,
-				48E584CF26D88D9500FF9FA8 /* CustomKFManager.swift */,
+				48E584CF26D88D9500FF9FA8 /* ImageManager.swift */,
 				48E584D226D88E4B00FF9FA8 /* UserDefaultManager.swift */,
 			);
 			path = Manager;
@@ -449,6 +486,7 @@
 			isa = PBXGroup;
 			children = (
 				48E7850226CB206400D209EF /* Coordinator.swift */,
+				481E85F526E5F742002A9B93 /* PresentCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -523,7 +561,7 @@
 				4AF3E776308FD41DCDBFAA68 /* Pods_DailySpaceWidget.framework */,
 				48E34A2D26D7278200D1DA7F /* WidgetKit.framework */,
 				48E34A2F26D7278200D1DA7F /* SwiftUI.framework */,
-				6FE8D184A48D4FEE1A1D1015 /* Pods_MainWidgetExtension.framework */,
+				1241865604D9F02CF204AC4F /* Pods_MainWidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -533,8 +571,10 @@
 			children = (
 				CBCA79CEBF398E905258B1CF /* Pods-DailySpaceWidget.debug.xcconfig */,
 				182D922C3EA5D42BA61A91E4 /* Pods-DailySpaceWidget.release.xcconfig */,
-				A87084FEB390156B5C222679 /* Pods-MainWidgetExtension.debug.xcconfig */,
-				EDB94E7B012FEB56A3702883 /* Pods-MainWidgetExtension.release.xcconfig */,
+				6BF4A32386C8E5ED0E498A8D /* Pods-DailySpaceWidget-MainWidgetExtension.debug.xcconfig */,
+				A5F2A5E5D8A44E0D820D2678 /* Pods-DailySpaceWidget-MainWidgetExtension.release.xcconfig */,
+				4E3E2ADCEE707A8C321B6F82 /* Pods-MainWidgetExtension.debug.xcconfig */,
+				8A4DD61E280ACA598AAF2062 /* Pods-MainWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -546,7 +586,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48E34A4026D7278400D1DA7F /* Build configuration list for PBXNativeTarget "MainWidgetExtension" */;
 			buildPhases = (
-				1C4AB6DE7087A9EC0474C924 /* [CP] Check Pods Manifest.lock */,
+				16A937A6D2EA14E0717B478F /* [CP] Check Pods Manifest.lock */,
 				48E34A2826D7278200D1DA7F /* Sources */,
 				48E34A2926D7278200D1DA7F /* Frameworks */,
 				48E34A2A26D7278200D1DA7F /* Resources */,
@@ -638,7 +678,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1C4AB6DE7087A9EC0474C924 /* [CP] Check Pods Manifest.lock */ = {
+		16A937A6D2EA14E0717B478F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -709,17 +749,18 @@
 				48E584C226D7778E00FF9FA8 /* Constant.swift in Sources */,
 				48E584DA26D8B1B200FF9FA8 /* BaseURLs.swift in Sources */,
 				48E34A3326D7278200D1DA7F /* MainWidget.swift in Sources */,
+				4824B4A827041B9400620140 /* ImageManager.swift in Sources */,
 				48E584D926D8B1AC00FF9FA8 /* APIKeys.swift in Sources */,
-				48E584D626D8B0B700FF9FA8 /* PhotoFetchServices.swift in Sources */,
 				48E584C826D856ED00FF9FA8 /* WidgetViewModel.swift in Sources */,
-				48E584D126D88E2300FF9FA8 /* CustomKFManager.swift in Sources */,
+				4824B4A927041B9900620140 /* NetworkClient.swift in Sources */,
 				4891112B26DF5A5C00E52A05 /* MediumView.swift in Sources */,
+				4824B4A727041B8900620140 /* PhotoStorageService.swift in Sources */,
+				4824B4A627041AE100620140 /* PhotoFetchServices.swift in Sources */,
 				4891112E26DF5AB700E52A05 /* LargeView.swift in Sources */,
 				48C79FE126D7334A00135770 /* ManagedPhotoMetadata.swift in Sources */,
 				48E34A3826D7278400D1DA7F /* MainWidget.intentdefinition in Sources */,
 				48E584DC26D8B1CB00FF9FA8 /* Date+currentDay.swift in Sources */,
 				48E584D426D88F8A00FF9FA8 /* UserDefaultManager.swift in Sources */,
-				48E584D826D8B10800FF9FA8 /* NetworkClient.swift in Sources */,
 				48E584D726D8B0FC00FF9FA8 /* NASAPhotoMetadata.swift in Sources */,
 				48E584CE26D88D3600FF9FA8 /* RealmManager.swift in Sources */,
 				4891112826DF589300E52A05 /* PhotoMetadataEntry.swift in Sources */,
@@ -727,7 +768,6 @@
 				48E34A4126D72AAE00D1DA7F /* PhotoMetadata.swift in Sources */,
 				48E584DD26D8B1D400FF9FA8 /* Formatter+toString+toDate.swift in Sources */,
 				48E584DB26D8B1BD00FF9FA8 /* EndPoints.swift in Sources */,
-				48C79FE026D7331100135770 /* PhotoStorageService.swift in Sources */,
 				4891112426DF585E00E52A05 /* MainWidgetEntryView.swift in Sources */,
 				4891113526E0231A00E52A05 /* UIImage+withColor.swift in Sources */,
 				48E584DE26D8B1DD00FF9FA8 /* NetworkError.swift in Sources */,
@@ -738,16 +778,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				481E85F026E5F584002A9B93 /* PreviewCoordinator.swift in Sources */,
 				48B876A626CC6C6300EE0B21 /* DynamicHeightScrollView.swift in Sources */,
 				48E7850326CB206400D209EF /* Coordinator.swift in Sources */,
 				48B8769826CB75EA00EE0B21 /* EndPoints.swift in Sources */,
 				48B876AE26CC6D6200EE0B21 /* PhotoCell.swift in Sources */,
 				48E7850E26CB247D00D209EF /* GalleryViewController.swift in Sources */,
 				48E584D326D88E4B00FF9FA8 /* UserDefaultManager.swift in Sources */,
-				48E584D026D88D9500FF9FA8 /* CustomKFManager.swift in Sources */,
+				48E584D026D88D9500FF9FA8 /* ImageManager.swift in Sources */,
 				48B8769626CB75D000EE0B21 /* BaseURLs.swift in Sources */,
 				48B8769426CB75BC00EE0B21 /* APIKeys.swift in Sources */,
 				48B8768E26CB4E0500EE0B21 /* NetworkClient.swift in Sources */,
+				481E85F426E5F59F002A9B93 /* PreviewViewController.swift in Sources */,
 				48E34A3926D7278400D1DA7F /* MainWidget.intentdefinition in Sources */,
 				4828FFDF26D1CE2600D8EAE3 /* DetailCoordinator.swift in Sources */,
 				4880199626D43C39008ADB2E /* Formatter+toString+toDate.swift in Sources */,
@@ -756,6 +798,7 @@
 				4880199426D3708D008ADB2E /* ManagedPhotoMetadata.swift in Sources */,
 				4828FFE126D1CE3100D8EAE3 /* DetailViewModel.swift in Sources */,
 				48E7850526CB20A600D209EF /* AppCoordinator.swift in Sources */,
+				481E85F226E5F594002A9B93 /* PreviewViewModel.swift in Sources */,
 				48E784E826CB1B0300D209EF /* AppDelegate.swift in Sources */,
 				48E7851026CB264000D209EF /* GalleryViewModel.swift in Sources */,
 				48B876E626D0B4F600EE0B21 /* Constant.swift in Sources */,
@@ -767,6 +810,7 @@
 				48B876E326D0B29300EE0B21 /* UIImage+createSFIcon.swift in Sources */,
 				48B876AA26CC6C7500EE0B21 /* VerticalStackView.swift in Sources */,
 				48E784EA26CB1B0300D209EF /* SceneDelegate.swift in Sources */,
+				481E85F626E5F742002A9B93 /* PresentCoordinator.swift in Sources */,
 				48E7851626CB2B4500D209EF /* PhotoFetchServices.swift in Sources */,
 				48B8769126CB4E3F00EE0B21 /* NetworkError.swift in Sources */,
 				4828FFE626D3694B00D8EAE3 /* PhotoStorageService.swift in Sources */,
@@ -801,8 +845,9 @@
 /* Begin XCBuildConfiguration section */
 		48E34A3E26D7278400D1DA7F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A87084FEB390156B5C222679 /* Pods-MainWidgetExtension.debug.xcconfig */;
+			baseConfigurationReference = 4E3E2ADCEE707A8C321B6F82 /* Pods-MainWidgetExtension.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = MainWidgetExtension.entitlements;
@@ -824,8 +869,9 @@
 		};
 		48E34A3F26D7278400D1DA7F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EDB94E7B012FEB56A3702883 /* Pods-MainWidgetExtension.release.xcconfig */;
+			baseConfigurationReference = 8A4DD61E280ACA598AAF2062 /* Pods-MainWidgetExtension.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = MainWidgetExtension.entitlements;
@@ -849,6 +895,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -896,7 +943,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -910,6 +957,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -951,7 +999,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

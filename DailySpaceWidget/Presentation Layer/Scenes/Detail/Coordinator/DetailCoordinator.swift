@@ -6,9 +6,9 @@
 //
 
 import UIKit
-class DetailCoordinator: Coordinator {
+class DetailCoordinator: PresentCoordinator {
   
-  unowned let navigationController: UINavigationController
+  unowned var navigationController: UINavigationController
   let photoMetadata: PhotoMetadata
   
   init(navigationController: UINavigationController, photoMetadata: PhotoMetadata) {
@@ -23,21 +23,10 @@ class DetailCoordinator: Coordinator {
     navigationController.topViewController?.present(detailViewController, animated: true, completion: nil)
   }
   
-  func end() {
+  func dismiss() {
     guard let galleryViewController = navigationController.topViewController as? GalleryViewController else { return }
     galleryViewController.dismiss(animated: true, completion: nil)
   }
   
 }
 
-extension DetailCoordinator {
-  var topController: UIViewController? {
-    // get top view in navigation controller
-    let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-    guard var topController = keyWindow?.rootViewController else { return nil }
-    while let presentedViewController = topController.presentedViewController {
-        topController = presentedViewController
-    }
-    return topController
-  }
-}

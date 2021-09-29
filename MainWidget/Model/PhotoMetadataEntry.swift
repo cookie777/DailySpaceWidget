@@ -21,7 +21,7 @@ extension PhotoMetadataEntry {
   static let placeholder = PhotoMetadataEntry(
     date: Date(),
     data: PhotoMetadata(copyright: nil, date: nil, explanation: nil, imageHDURL: nil, imageURL: nil, title: nil),
-    image: Image(""),
+    image: Image(uiImage: UIImage()),
     configuration: ConfigurationIntent()
   )
   

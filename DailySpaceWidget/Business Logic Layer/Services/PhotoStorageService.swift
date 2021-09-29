@@ -24,7 +24,7 @@ protocol PhotoStorageService: AnyObject {
 
 }
 
-class PhotoStorageServiceImplementation: PhotoStorageService {
+final class PhotoStorageServiceImplementation: PhotoStorageService {
 
   
   func storeLatestUpdateDate() {

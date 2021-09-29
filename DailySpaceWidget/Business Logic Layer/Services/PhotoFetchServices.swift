@@ -7,19 +7,15 @@
 
 import Foundation
 import RxSwift
-import Kingfisher
 
 protocol PhotoFetchService: AnyObject {
   /// Returns by default past 10 photos metadata
   func getPhotosMetadata(days: Int) -> Observable<([NASAPhotoMetadata]?, Error?)>
-  
-  /// Returns a single photo metadata by the given **date**
-  func getPhotoMetadata(date: String) -> Observable<(NASAPhotoMetadata?, Error?)>
+  func getPhotosMetadataSync(days: Int) -> ([NASAPhotoMetadata]?, Error?)
 }
-//
-class PhotosFetchServiceImplementation: PhotoFetchService {
 
-  let networkClient = NetworkClient(baseUrlString: BasicURLs.NASA)
+final class PhotosFetchServiceImplementation: PhotoFetchService {
+  private let networkClient = NetworkClient(baseUrlString: BasicURLs.NASA)
   
   func getPhotosMetadata(days: Int) -> Observable<([NASAPhotoMetadata]?, Error?)> {
     let parameter = [
@@ -35,18 +31,17 @@ class PhotosFetchServiceImplementation: PhotoFetchService {
     )
   }
   
-  func getPhotoMetadata(date: String) -> Observable<(NASAPhotoMetadata?, Error?)> {
-
+  func getPhotosMetadataSync(days: Int) -> ([NASAPhotoMetadata]?, Error?) {
     let parameter = [
       "api_key": APIKeys.NASA,
+      "start_date": Date.getPastDate(days: days)
     ]
-    
-    return networkClient.get(
-      NASAPhotoMetadata.self,
+
+    return networkClient.getArraySync(
+      [NASAPhotoMetadata].self,
       EndPoints.NASAapod,
       parameters: parameter,
       printURL: true
     )
   }
-
 }

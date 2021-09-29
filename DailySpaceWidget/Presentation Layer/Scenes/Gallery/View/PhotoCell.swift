@@ -25,7 +25,7 @@ class PhotoCell: UICollectionViewCell {
   static let identifier = "photoCell"
   private(set) var disposeBag = DisposeBag()
   var didDescriptionTappedHandler: (()->())?
-  var didPhotoFocusTappedHandler: (()->())?
+  var didPreviewTappedHandler: (()->())?
   
   var imageViewBackground: UIImageView = {
     let imageView = UIImageView()
@@ -63,7 +63,7 @@ class PhotoCell: UICollectionViewCell {
     return bt
   }()
   
-  let photoFocusButton: UIButton = {
+  let previewButton: UIButton = {
     let bt = UIButton()
     bt.setImage(UIImage.createSFIcon(name: "magnifyingglass.circle.fill", size: 40), for: .normal)
     return bt
@@ -71,7 +71,7 @@ class PhotoCell: UICollectionViewCell {
   
   lazy var infoStackView: VerticalStackView = {
     let sv = VerticalStackView(
-      arrangedSubviews: [titleLabel, copyrightLabel, dateLabel, descriptionButton, photoFocusButton],
+      arrangedSubviews: [titleLabel, copyrightLabel, dateLabel, descriptionButton, previewButton],
       spacing: 2,
       alignment: .leading
     )
@@ -97,10 +97,10 @@ extension PhotoCell {
       })
       .disposed(by: disposeBag)
     
-    photoFocusButton.rx
+    previewButton.rx
       .tap
       .bind(onNext: { [weak self] _ in
-        self?.didDescriptionTappedHandler?()
+        self?.didPreviewTappedHandler?()
       })
       .disposed(by: disposeBag)
   }

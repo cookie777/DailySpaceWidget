@@ -68,6 +68,14 @@ extension GalleryViewController {
     bindOrientation()
     
     viewModel.getPhotoMetadata()
+    
+    collectionView.rx
+      .itemSelected
+      .bind { [weak self] indexPath in
+        guard let cell = self?.collectionView.cellForItem(at: indexPath) as? PhotoCell else { return }
+        cell.infoStackView.alpha = cell.infoStackView.alpha == 1.0 ? 0.0 : 1.0
+      }
+      .disposed(by: disposeBag)
   }
 }
 
@@ -93,8 +101,8 @@ extension GalleryViewController {
         cell.didDescriptionTappedHandler = { [weak self] in
           self?.viewModel.cellDescriptionTapped.accept(index)
         }
-        cell.didPhotoFocusTappedHandler = { [weak self] in
-          self?.viewModel.cellPhotoFocusTapped.accept(index)
+        cell.didPreviewTappedHandler = { [weak self] in
+          self?.viewModel.cellPreviewTapped.accept(index)
         }
         cell.imageViewBackground.image = Constant.UI.placeholderImage
       })
@@ -103,7 +111,7 @@ extension GalleryViewController {
         guard let item = self?.viewModel.photosMetadata.value[index] else {
           fatalError("can not find item")
         }
-        return CustomKFManager.checkImageCache(key: item.imageURL?.absoluteString)
+        return ImageManager.checkImageCache(key: item.imageURL?.absoluteString)
           .flatMap { image in
             Observable.just((cell, item, image))
           }
@@ -113,7 +121,7 @@ extension GalleryViewController {
         KF.url(item.imageURL)
           .placeholder(widgetImage)
           .loadDiskFileSynchronously()
-          .targetCache(CustomKFManager.imageCache)
+          .targetCache(ImageManager.imageCache)
           .cacheOriginalImage()
           .fade(duration: 0.25)
           .lowDataModeSource(.network(ImageResource(downloadURL: item.imageURL!)))

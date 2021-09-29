@@ -20,7 +20,7 @@ struct SmallView: View {
         alignment: .leading,
         spacing: 8
       ) {
-        Text(Formatter.dateToStringForWidget(date:entry.data?.date) ?? "")
+        Text(entry.date.description)
           .foregroundColor(.white)
           .fontWeight(.black)
           .font(.system(size: 12))
